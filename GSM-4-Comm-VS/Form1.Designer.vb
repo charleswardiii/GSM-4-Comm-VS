@@ -23,9 +23,9 @@ Partial Class GSMTimed
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.ComboGas0 = New System.Windows.Forms.ComboBox()
         Me.ComboGas1 = New System.Windows.Forms.ComboBox()
         Me.ComboGas2 = New System.Windows.Forms.ComboBox()
@@ -263,10 +263,12 @@ Partial Class GSMTimed
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.stepTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.nUpDnPctA1 = New System.Windows.Forms.NumericUpDown()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctA1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ComboGas0
@@ -2165,23 +2167,23 @@ Partial Class GSMTimed
         'Chart2
         '
         Me.Chart2.BackColor = System.Drawing.Color.Gainsboro
-        ChartArea1.AxisX.IsLabelAutoFit = False
-        ChartArea1.AxisX.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.69307!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.RoyalBlue
-        ChartArea1.AxisX.MajorGrid.Enabled = False
-        ChartArea1.AxisY2.IsLabelAutoFit = False
-        ChartArea1.AxisY2.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.267326!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea1.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea1)
-        Legend1.Enabled = False
-        Legend1.Name = "Legend1"
-        Me.Chart2.Legends.Add(Legend1)
+        ChartArea2.AxisX.IsLabelAutoFit = False
+        ChartArea2.AxisX.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.69307!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea2.AxisX.LabelStyle.ForeColor = System.Drawing.Color.RoyalBlue
+        ChartArea2.AxisX.MajorGrid.Enabled = False
+        ChartArea2.AxisY2.IsLabelAutoFit = False
+        ChartArea2.AxisY2.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.267326!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea2.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea2)
+        Legend2.Enabled = False
+        Legend2.Name = "Legend1"
+        Me.Chart2.Legends.Add(Legend2)
         Me.Chart2.Location = New System.Drawing.Point(412, 454)
         Me.Chart2.Name = "Chart2"
-        Series1.ChartArea = "ChartArea1"
-        Series1.Legend = "Legend1"
-        Series1.Name = "Series1"
-        Me.Chart2.Series.Add(Series1)
+        Series2.ChartArea = "ChartArea1"
+        Series2.Legend = "Legend1"
+        Series2.Name = "Series1"
+        Me.Chart2.Series.Add(Series2)
         Me.Chart2.Size = New System.Drawing.Size(250, 178)
         Me.Chart2.TabIndex = 228
         Me.Chart2.Text = "Chart2"
@@ -2451,6 +2453,16 @@ Partial Class GSMTimed
         Me.stepTimer.Enabled = True
         Me.stepTimer.Interval = 1000
         '
+        'nUpDnPctA1
+        '
+        Me.nUpDnPctA1.DecimalPlaces = 1
+        Me.nUpDnPctA1.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctA1.Location = New System.Drawing.Point(280, 26)
+        Me.nUpDnPctA1.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctA1.Name = "nUpDnPctA1"
+        Me.nUpDnPctA1.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctA1.TabIndex = 257
+        '
         'GSMTimed
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2458,6 +2470,7 @@ Partial Class GSMTimed
         Me.AutoSize = True
         Me.BackColor = System.Drawing.Color.Gainsboro
         Me.ClientSize = New System.Drawing.Size(1129, 704)
+        Me.Controls.Add(Me.nUpDnPctA1)
         Me.Controls.Add(Me.GroupBox10)
         Me.Controls.Add(Me.GroupBox5)
         Me.Controls.Add(Me.Label67)
@@ -2677,13 +2690,14 @@ Partial Class GSMTimed
         Me.Controls.Add(Me.ComboGas0)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "GSMTimed"
-        Me.Text = "GSM-4-CommVS v4.11"
+        Me.Text = "GSM-4-CommVS v4.51"
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctA1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2926,4 +2940,5 @@ Partial Class GSMTimed
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents GroupBox10 As GroupBox
     Public WithEvents stepTimer As Timer
+    Friend WithEvents nUpDnPctA1 As NumericUpDown
 End Class
