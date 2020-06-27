@@ -23,9 +23,9 @@ Partial Class GSMTimed
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.ComboGas0 = New System.Windows.Forms.ComboBox()
         Me.ComboGas1 = New System.Windows.Forms.ComboBox()
         Me.ComboGas2 = New System.Windows.Forms.ComboBox()
@@ -264,11 +264,41 @@ Partial Class GSMTimed
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.stepTimer = New System.Windows.Forms.Timer(Me.components)
         Me.nUpDnPctA1 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctB1 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctC1 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctD1 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctD2 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctC2 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctB2 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctA2 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctD3 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctC3 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctB3 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctA3 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctD4 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctC4 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctB4 = New System.Windows.Forms.NumericUpDown()
+        Me.nUpDnPctA4 = New System.Windows.Forms.NumericUpDown()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nUpDnPctA1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctB1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctC1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctD1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctD2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctC2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctB2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctA2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctD3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctC3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctB3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctA3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctD4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctC4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctB4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nUpDnPctA4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ComboGas0
@@ -2167,23 +2197,23 @@ Partial Class GSMTimed
         'Chart2
         '
         Me.Chart2.BackColor = System.Drawing.Color.Gainsboro
-        ChartArea2.AxisX.IsLabelAutoFit = False
-        ChartArea2.AxisX.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.69307!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea2.AxisX.LabelStyle.ForeColor = System.Drawing.Color.RoyalBlue
-        ChartArea2.AxisX.MajorGrid.Enabled = False
-        ChartArea2.AxisY2.IsLabelAutoFit = False
-        ChartArea2.AxisY2.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.267326!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea2.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea2)
-        Legend2.Enabled = False
-        Legend2.Name = "Legend1"
-        Me.Chart2.Legends.Add(Legend2)
+        ChartArea1.AxisX.IsLabelAutoFit = False
+        ChartArea1.AxisX.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.69307!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.RoyalBlue
+        ChartArea1.AxisX.MajorGrid.Enabled = False
+        ChartArea1.AxisY2.IsLabelAutoFit = False
+        ChartArea1.AxisY2.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.267326!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea1)
+        Legend1.Enabled = False
+        Legend1.Name = "Legend1"
+        Me.Chart2.Legends.Add(Legend1)
         Me.Chart2.Location = New System.Drawing.Point(412, 454)
         Me.Chart2.Name = "Chart2"
-        Series2.ChartArea = "ChartArea1"
-        Series2.Legend = "Legend1"
-        Series2.Name = "Series1"
-        Me.Chart2.Series.Add(Series2)
+        Series1.ChartArea = "ChartArea1"
+        Series1.Legend = "Legend1"
+        Series1.Name = "Series1"
+        Me.Chart2.Series.Add(Series1)
         Me.Chart2.Size = New System.Drawing.Size(250, 178)
         Me.Chart2.TabIndex = 228
         Me.Chart2.Text = "Chart2"
@@ -2457,11 +2487,161 @@ Partial Class GSMTimed
         '
         Me.nUpDnPctA1.DecimalPlaces = 1
         Me.nUpDnPctA1.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
-        Me.nUpDnPctA1.Location = New System.Drawing.Point(280, 26)
+        Me.nUpDnPctA1.Location = New System.Drawing.Point(277, 60)
         Me.nUpDnPctA1.Margin = New System.Windows.Forms.Padding(2)
         Me.nUpDnPctA1.Name = "nUpDnPctA1"
         Me.nUpDnPctA1.Size = New System.Drawing.Size(58, 20)
         Me.nUpDnPctA1.TabIndex = 257
+        '
+        'nUpDnPctB1
+        '
+        Me.nUpDnPctB1.DecimalPlaces = 1
+        Me.nUpDnPctB1.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctB1.Location = New System.Drawing.Point(277, 102)
+        Me.nUpDnPctB1.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctB1.Name = "nUpDnPctB1"
+        Me.nUpDnPctB1.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctB1.TabIndex = 258
+        '
+        'nUpDnPctC1
+        '
+        Me.nUpDnPctC1.DecimalPlaces = 1
+        Me.nUpDnPctC1.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctC1.Location = New System.Drawing.Point(277, 141)
+        Me.nUpDnPctC1.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctC1.Name = "nUpDnPctC1"
+        Me.nUpDnPctC1.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctC1.TabIndex = 259
+        '
+        'nUpDnPctD1
+        '
+        Me.nUpDnPctD1.DecimalPlaces = 1
+        Me.nUpDnPctD1.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctD1.Location = New System.Drawing.Point(277, 183)
+        Me.nUpDnPctD1.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctD1.Name = "nUpDnPctD1"
+        Me.nUpDnPctD1.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctD1.TabIndex = 260
+        '
+        'nUpDnPctD2
+        '
+        Me.nUpDnPctD2.DecimalPlaces = 1
+        Me.nUpDnPctD2.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctD2.Location = New System.Drawing.Point(479, 183)
+        Me.nUpDnPctD2.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctD2.Name = "nUpDnPctD2"
+        Me.nUpDnPctD2.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctD2.TabIndex = 264
+        '
+        'nUpDnPctC2
+        '
+        Me.nUpDnPctC2.DecimalPlaces = 1
+        Me.nUpDnPctC2.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctC2.Location = New System.Drawing.Point(479, 141)
+        Me.nUpDnPctC2.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctC2.Name = "nUpDnPctC2"
+        Me.nUpDnPctC2.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctC2.TabIndex = 263
+        '
+        'nUpDnPctB2
+        '
+        Me.nUpDnPctB2.DecimalPlaces = 1
+        Me.nUpDnPctB2.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctB2.Location = New System.Drawing.Point(479, 102)
+        Me.nUpDnPctB2.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctB2.Name = "nUpDnPctB2"
+        Me.nUpDnPctB2.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctB2.TabIndex = 262
+        '
+        'nUpDnPctA2
+        '
+        Me.nUpDnPctA2.DecimalPlaces = 1
+        Me.nUpDnPctA2.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctA2.Location = New System.Drawing.Point(479, 60)
+        Me.nUpDnPctA2.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctA2.Name = "nUpDnPctA2"
+        Me.nUpDnPctA2.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctA2.TabIndex = 261
+        '
+        'nUpDnPctD3
+        '
+        Me.nUpDnPctD3.DecimalPlaces = 1
+        Me.nUpDnPctD3.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctD3.Location = New System.Drawing.Point(683, 183)
+        Me.nUpDnPctD3.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctD3.Name = "nUpDnPctD3"
+        Me.nUpDnPctD3.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctD3.TabIndex = 268
+        '
+        'nUpDnPctC3
+        '
+        Me.nUpDnPctC3.DecimalPlaces = 1
+        Me.nUpDnPctC3.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctC3.Location = New System.Drawing.Point(683, 141)
+        Me.nUpDnPctC3.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctC3.Name = "nUpDnPctC3"
+        Me.nUpDnPctC3.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctC3.TabIndex = 267
+        '
+        'nUpDnPctB3
+        '
+        Me.nUpDnPctB3.DecimalPlaces = 1
+        Me.nUpDnPctB3.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctB3.Location = New System.Drawing.Point(683, 102)
+        Me.nUpDnPctB3.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctB3.Name = "nUpDnPctB3"
+        Me.nUpDnPctB3.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctB3.TabIndex = 266
+        '
+        'nUpDnPctA3
+        '
+        Me.nUpDnPctA3.DecimalPlaces = 1
+        Me.nUpDnPctA3.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctA3.Location = New System.Drawing.Point(683, 60)
+        Me.nUpDnPctA3.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctA3.Name = "nUpDnPctA3"
+        Me.nUpDnPctA3.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctA3.TabIndex = 265
+        '
+        'nUpDnPctD4
+        '
+        Me.nUpDnPctD4.DecimalPlaces = 1
+        Me.nUpDnPctD4.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctD4.Location = New System.Drawing.Point(888, 183)
+        Me.nUpDnPctD4.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctD4.Name = "nUpDnPctD4"
+        Me.nUpDnPctD4.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctD4.TabIndex = 272
+        '
+        'nUpDnPctC4
+        '
+        Me.nUpDnPctC4.DecimalPlaces = 1
+        Me.nUpDnPctC4.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctC4.Location = New System.Drawing.Point(888, 141)
+        Me.nUpDnPctC4.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctC4.Name = "nUpDnPctC4"
+        Me.nUpDnPctC4.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctC4.TabIndex = 271
+        '
+        'nUpDnPctB4
+        '
+        Me.nUpDnPctB4.DecimalPlaces = 1
+        Me.nUpDnPctB4.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctB4.Location = New System.Drawing.Point(888, 102)
+        Me.nUpDnPctB4.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctB4.Name = "nUpDnPctB4"
+        Me.nUpDnPctB4.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctB4.TabIndex = 270
+        '
+        'nUpDnPctA4
+        '
+        Me.nUpDnPctA4.DecimalPlaces = 1
+        Me.nUpDnPctA4.Increment = New Decimal(New Integer() {1, 0, 0, 65536})
+        Me.nUpDnPctA4.Location = New System.Drawing.Point(888, 60)
+        Me.nUpDnPctA4.Margin = New System.Windows.Forms.Padding(2)
+        Me.nUpDnPctA4.Name = "nUpDnPctA4"
+        Me.nUpDnPctA4.Size = New System.Drawing.Size(58, 20)
+        Me.nUpDnPctA4.TabIndex = 269
         '
         'GSMTimed
         '
@@ -2470,6 +2650,21 @@ Partial Class GSMTimed
         Me.AutoSize = True
         Me.BackColor = System.Drawing.Color.Gainsboro
         Me.ClientSize = New System.Drawing.Size(1129, 704)
+        Me.Controls.Add(Me.nUpDnPctD4)
+        Me.Controls.Add(Me.nUpDnPctC4)
+        Me.Controls.Add(Me.nUpDnPctB4)
+        Me.Controls.Add(Me.nUpDnPctA4)
+        Me.Controls.Add(Me.nUpDnPctD3)
+        Me.Controls.Add(Me.nUpDnPctC3)
+        Me.Controls.Add(Me.nUpDnPctB3)
+        Me.Controls.Add(Me.nUpDnPctA3)
+        Me.Controls.Add(Me.nUpDnPctD2)
+        Me.Controls.Add(Me.nUpDnPctC2)
+        Me.Controls.Add(Me.nUpDnPctB2)
+        Me.Controls.Add(Me.nUpDnPctA2)
+        Me.Controls.Add(Me.nUpDnPctD1)
+        Me.Controls.Add(Me.nUpDnPctC1)
+        Me.Controls.Add(Me.nUpDnPctB1)
         Me.Controls.Add(Me.nUpDnPctA1)
         Me.Controls.Add(Me.GroupBox10)
         Me.Controls.Add(Me.GroupBox5)
@@ -2698,6 +2893,21 @@ Partial Class GSMTimed
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nUpDnPctA1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctB1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctC1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctD1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctD2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctC2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctB2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctA2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctD3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctC3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctB3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctA3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctD4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctC4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctB4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nUpDnPctA4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2941,4 +3151,19 @@ Partial Class GSMTimed
     Friend WithEvents GroupBox10 As GroupBox
     Public WithEvents stepTimer As Timer
     Friend WithEvents nUpDnPctA1 As NumericUpDown
+    Friend WithEvents nUpDnPctB1 As NumericUpDown
+    Friend WithEvents nUpDnPctC1 As NumericUpDown
+    Friend WithEvents nUpDnPctD1 As NumericUpDown
+    Friend WithEvents nUpDnPctD2 As NumericUpDown
+    Friend WithEvents nUpDnPctC2 As NumericUpDown
+    Friend WithEvents nUpDnPctB2 As NumericUpDown
+    Friend WithEvents nUpDnPctA2 As NumericUpDown
+    Friend WithEvents nUpDnPctD3 As NumericUpDown
+    Friend WithEvents nUpDnPctC3 As NumericUpDown
+    Friend WithEvents nUpDnPctB3 As NumericUpDown
+    Friend WithEvents nUpDnPctA3 As NumericUpDown
+    Friend WithEvents nUpDnPctD4 As NumericUpDown
+    Friend WithEvents nUpDnPctC4 As NumericUpDown
+    Friend WithEvents nUpDnPctB4 As NumericUpDown
+    Friend WithEvents nUpDnPctA4 As NumericUpDown
 End Class
