@@ -179,22 +179,6 @@ Public Class GSMTimed
     End Sub
 
 
-    ' below are attempts to allow user to directly enter mix percent values in textbox...  so far, not good!
-
-    'Private Sub tbxPctA1_TextChanged(sender As Object, e As EventArgs) Handles tbxPctA1.TextChanged
-    '    upDnPctA1.Focus()
-    '    upDnPctA1.Value = -1 * Val(tbxPctA1.Text) * 10
-
-    'End Sub
-
-    'Private Sub tbxPctB1_TextChanged(sender As Object, e As EventArgs) Handles tbxPctB1.TextChanged
-    '    upDnPctB1.Value = -1 * Val(tbxPctB1.Text) * 10
-    'End Sub
-
-    'Private Sub tbxPctC1_TextChanged(sender As Object, e As EventArgs) Handles tbxPctC1.TextChanged
-    '    upDnPctC1.Value = -1 * Val(tbxPctC1.Text) * 10
-    'End Sub
-
 
     '=========================================================================================================================================
     '                             USER HAS UPDATED FLOW CONTROLLER CONFIGURATION
@@ -403,18 +387,18 @@ cleanup_and_exit:       ' close down sequencer operations
     ' following subs handle all the TOTAL FLOW updowns for the 4 mixtures
     ' This was not needed in the VBC version, which used "buddy" controls
     ' NOTE: upDn's work in reverse, so values are correctred to increment with up arrow, and vice-versa
-    Private Sub upDnFlow1_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow1.Scroll
-        tbxTFlow1.Text = -1 * upDnFlow1.Value
-    End Sub
-    Private Sub upDnFlow2_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow2.Scroll
-        tbxTFlow2.Text = -1 * upDnFlow2.Value
-    End Sub
-    Private Sub upDnFlow3_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow3.Scroll
-        tbxTFlow3.Text = -1 * upDnFlow3.Value
-    End Sub
-    Private Sub upDnFlow4_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow4.Scroll
-        tbxTFlow4.Text = -1 * upDnFlow4.Value
-    End Sub
+    'Private Sub upDnFlow1_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow1.Scroll
+    '    tbxTFlow1.Text = -1 * upDnFlow1.Value
+    'End Sub
+    'Private Sub upDnFlow2_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow2.Scroll
+    '    tbxTFlow2.Text = -1 * upDnFlow2.Value
+    'End Sub
+    'Private Sub upDnFlow3_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow3.Scroll
+    '    tbxTFlow3.Text = -1 * upDnFlow3.Value
+    'End Sub
+    'Private Sub upDnFlow4_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow4.Scroll
+    '    tbxTFlow4.Text = -1 * upDnFlow4.Value
+    'End Sub
 
 
 
@@ -684,81 +668,6 @@ cleanup_and_exit:       ' close down sequencer operations
         mix_running = 4
         CreateChart()
     End Sub
-
-
-
-    '=========================================================================================================================================
-    '                                     PERCENTAGE UPDOWNS FOR 4 MIXTURES, 4 GASSES EACH
-    '=========================================================================================================================================
-    ' NOTE: upDn's work in reverse, so values are corrected to increment with up arrow, and vice-versa
-
-    Private Sub upDnPctA1_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctA1.Scroll
-        tbxPctA1.Text = -1 * upDnPctA1.Value / 10
-    End Sub
-
-    Private Sub upDnPctB1_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctB1.Scroll
-        'Debug.Print(upDnPctB1.Value)
-        tbxPctB1.Text = -1 * upDnPctB1.Value / 10   '**************************************************
-    End Sub
-
-    Private Sub upDnPctC1_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctC1.Scroll
-        tbxPctC1.Text = -1 * upDnPctC1.Value / 10
-    End Sub
-
-    Private Sub upDnPctD1_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctD1.Scroll
-        tbxPctD1.Text = -1 * upDnPctD1.Value / 10
-    End Sub
-
-
-
-    Private Sub upDnPctA2_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctA2.Scroll
-        tbxPctA2.Text = -1 * upDnPctA2.Value / 10
-    End Sub
-
-    Private Sub upDnPctB2_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctB2.Scroll
-        tbxPctB2.Text = -1 * upDnPctB2.Value / 10
-    End Sub
-
-    Private Sub upDnPctC2_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctC2.Scroll
-        tbxPctC2.Text = -1 * upDnPctC2.Value / 10
-    End Sub
-
-    Private Sub upDnPctD2_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctD2.Scroll
-        tbxPctD2.Text = -1 * upDnPctD2.Value / 10
-    End Sub
-
-
-    Private Sub upDnPctA3_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctA3.Scroll
-        tbxPctA3.Text = -1 * upDnPctA3.Value / 10
-    End Sub
-
-    Private Sub upDnPctB3_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctB3.Scroll
-        tbxPctB3.Text = -1 * upDnPctB3.Value / 10
-    End Sub
-
-    Private Sub upDnPctC3_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctC3.Scroll
-        tbxPctC3.Text = -1 * upDnPctC3.Value / 10
-    End Sub
-    Private Sub upDnPctD3_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctD3.Scroll
-        tbxPctD3.Text = -1 * upDnPctD3.Value / 10
-    End Sub
-
-
-    Private Sub upDnPctA4_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctA4.Scroll
-        tbxPctA4.Text = -1 * upDnPctA4.Value / 10
-    End Sub
-
-    Private Sub upDnPctB4_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctB4.Scroll
-        tbxPctB4.Text = -1 * upDnPctB4.Value / 10
-    End Sub
-
-    Private Sub upDnPctC4_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctC4.Scroll
-        tbxPctC4.Text = -1 * upDnPctC4.Value / 10
-    End Sub
-    Private Sub upDnPctD4_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnPctD4.Scroll
-        tbxPctD4.Text = -1 * upDnPctD4.Value / 10
-    End Sub
-
 
 
 
@@ -1246,39 +1155,39 @@ cleanup_and_exit:       ' close down sequencer operations
         ' Not selected: textbox background color = white, updn control is disabled
 
         ' Gas 1
-        If btnFillGas0.Checked = True Then      ' gas 1 selected as fill gas
+        If btnFillGas0.Checked = True Then      ' gas 1 selected as fill gas  (NOT B, C, D)  **
             ' Mix A1
             nUpDnPctA1.Enabled = False           ' make updn control invisible
             nUpDnPctA1.BackColor = Color.Aqua     ' change "fill" text box to blue
-            If (nUpDnPctA1.Value + nUpDnPctC1.Value) <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctA1.Value = 100 - (nUpDnPctB1.Value + nUpDnPctC1.Value) ' compute fill gas value
+            If (nUpDnPctB1.Value + nUpDnPctC1.Value + nUpDnPctD1.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctA1.Value = 100 - (nUpDnPctB1.Value + nUpDnPctC1.Value + nUpDnPctD1.Value) ' compute fill gas value
             Else
                 nUpDnPctA1.Value = 0                                            ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix A2
+            ' Mix A2                                ' (NOT B, C, D)  **
             nUpDnPctA2.Enabled = False           ' make updn control invisible
             nUpDnPctA2.BackColor = Color.Aqua     ' change "fill" text box to blue
-            If (nUpDnPctB2.Value + nUpDnPctC2.Value) <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctA2.Value = Format(100 - (nUpDnPctB2.Value + nUpDnPctC2.Value), "##0.0") ' compute fill gas value
+            If (nUpDnPctB2.Value + nUpDnPctC2.Value + nUpDnPctD2.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctA2.Value = Format(100 - (nUpDnPctB2.Value + nUpDnPctC2.Value + nUpDnPctD2.Value), "##0.0") ' compute fill gas value
             Else
                 nUpDnPctA2.Value = 0                                            ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix A3
+            ' Mix A3                                '(NOT B, C, D)   **
             nUpDnPctA3.Enabled = False           ' make updn control invisible
             nUpDnPctA3.BackColor = Color.Aqua     ' change "fill" text box to blue
-            If (nUpDnPctB3.Value + nUpDnPctC3.Value) <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctA3.Value = Format(100 - (nUpDnPctB3.Value + nUpDnPctC3.Value), "##0.0") ' compute fill gas value
+            If (nUpDnPctB3.Value + nUpDnPctC3.Value + nUpDnPctD3.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctA3.Value = Format(100 - (nUpDnPctB3.Value + nUpDnPctC3.Value + nUpDnPctD3.Value), "##0.0") ' compute fill gas value
             Else
                 nUpDnPctA3.Value = 0                                            ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix A4
+            ' Mix A4                                (NOT B, C, D) **
             nUpDnPctA4.Enabled = False           ' make updn control invisible
             nUpDnPctA4.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (nUpDnPctB4.Value + nUpDnPctC4.Value) <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctA4.Value = Format(100 - (nUpDnPctB4.Value + nUpDnPctC4.Value), "##0.0") ' compute fill gas value
+            If (nUpDnPctB4.Value + nUpDnPctC4.Value + nUpDnPctD4.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctA4.Value = Format(100 - (nUpDnPctB4.Value + nUpDnPctC4.Value + nUpDnPctD4.Value), "##0.0") ' compute fill gas value
             Else
                 nUpDnPctA4.Value = 0                 ' other values too big, so make fill gas 0%
             End If
@@ -1301,40 +1210,40 @@ cleanup_and_exit:       ' close down sequencer operations
         End If
 
         '-----------------------------------------------------------------------------------------------------------------
-        ' Gas 2
-        If btnFillGas1.Checked = True Then      ' gas 2 selected as fill gas
-            ' Mix B1
+        ' Gas 2                                     (NOT A, C, D)
+        If btnFillGas1.Checked = True Then      ' gas 2 selected as fill gas   
+            ' Mix B1                                **
             nUpDnPctB1.Enabled = False           ' make updn control invisible
             nUpDnPctB1.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (nUpDnPctA1.Value + nUpDnPctC1.Value) <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctB1.Value = Format(100 - (nUpDnPctA1.Value + nUpDnPctC1.Value), "##0.0") ' compute fill gas value
+            If (nUpDnPctA1.Value + nUpDnPctC1.Value + nUpDnPctD1.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctB1.Value = Format(100 - (nUpDnPctA1.Value + nUpDnPctC1.Value + nUpDnPctD1.Value), "##0.0") ' compute fill gas value
             Else
                 nUpDnPctB1.Value = 0                    ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix B2
+            ' Mix B2                                (NOT A, C, D)       **
             nUpDnPctB2.Enabled = False           ' make updn control invisible
             nUpDnPctB2.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (nUpDnPctA2.Value + nUpDnPctC2.Value) <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctB2.Value = Format(100 - (nUpDnPctA2.Value + nUpDnPctC2.Value), "##0.0") ' compute fill gas value
+            If (nUpDnPctA2.Value + nUpDnPctC2.Value + nUpDnPctD2.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctB2.Value = Format(100 - (nUpDnPctA2.Value + nUpDnPctC2.Value + nUpDnPctD2.Value), "##0.0") ' compute fill gas value
             Else
                 nUpDnPctB2.Value = 0                    ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix B3
+            ' Mix B3                                (NOT A, C, D)       **
             nUpDnPctB3.Enabled = False           ' make updn control invisible
             nUpDnPctB3.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (nUpDnPctA3.Value + nUpDnPctC3.Value) <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctB3.Value = Format(100 - (nUpDnPctA3.Value + nUpDnPctC3.Value), "##0.0") ' compute fill gas value
+            If (nUpDnPctA3.Value + nUpDnPctC3.Value + nUpDnPctD3.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctB3.Value = Format(100 - (nUpDnPctA3.Value + nUpDnPctC3.Value + nUpDnPctD3.Value), "##0.0") ' compute fill gas value
             Else
                 nUpDnPctB3.Value = 0                     ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix B4
+            ' Mix B4                            (NOT A, C, D)       **
             nUpDnPctB4.Enabled = False           ' make updn control invisible
             nUpDnPctB4.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (nUpDnPctA4.Value + nUpDnPctC4.Value) <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctB4.Value = Format(100 - (nUpDnPctA4.Value + nUpDnPctC4.Value), "##0.0") ' compute fill gas value
+            If (nUpDnPctA4.Value + nUpDnPctC4.Value + nUpDnPctD4.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctB4.Value = Format(100 - (nUpDnPctA4.Value + nUpDnPctC4.Value + nUpDnPctD4.Value), "##0.0") ' compute fill gas value
             Else
                 nUpDnPctB4.Value = 0                    ' other values too big, so make fill gas 0%
             End If
@@ -1358,39 +1267,39 @@ cleanup_and_exit:       ' close down sequencer operations
 
         '-----------------------------------------------------------------------------------------------------------------
         ' Gas 3
-        If btnFillGas2.Checked = True Then      ' gas 3 selected as fill gas
-            ' Mix C1
+        If btnFillGas2.Checked = True Then      ' gas 3 selected as fill gas   (NOT A, B, D)
+            ' Mix C1                                **
             nUpDnPctC1.Enabled = False           ' make updn control invisible
             nUpDnPctC1.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If nUpDnPctA1.Value + nUpDnPctB1.Value <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctC1.Value = 100 - (nUpDnPctA1.Value + nUpDnPctB1.Value) ' compute fill gas value
+            If (nUpDnPctA1.Value + nUpDnPctB1.Value + nUpDnPctD1.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctC1.Value = 100 - (nUpDnPctA1.Value + nUpDnPctB1.Value + nUpDnPctD1.Value) ' compute fill gas value
             Else
                 nUpDnPctC1.Value = 0                    ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix C2
+            ' Mix C2                            (NOT A, B, D)   **
             nUpDnPctC2.Enabled = False           ' make updn control invisible
             nUpDnPctC2.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (nUpDnPctA2.Value + nUpDnPctB2.Value) <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctC2.Value = Format(100 - (nUpDnPctA2.Value + nUpDnPctB2.Value), "##0.0") ' compute fill gas value
+            If (nUpDnPctA2.Value + nUpDnPctB2.Value + nUpDnPctD2.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctC2.Value = Format(100 - (nUpDnPctA2.Value + nUpDnPctB2.Value + nUpDnPctD2.Value), "##0.0") ' compute fill gas value
             Else
                 nUpDnPctC2.Value = 0                    ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix C3
+            ' Mix C3                            (NOT A, B, D)   **
             nUpDnPctC3.Enabled = False           ' make updn control invisible
             nUpDnPctC3.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (nUpDnPctA3.Value + nUpDnPctB3.Value) <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctC3.Value = Format(100 - (nUpDnPctA3.Value + nUpDnPctB3.Value), "##0.0") ' compute fill gas value
+            If (nUpDnPctA3.Value + nUpDnPctB3.Value + nUpDnPctD3.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctC3.Value = Format(100 - (nUpDnPctA3.Value + nUpDnPctB3.Value + nUpDnPctD3.Value), "##0.0") ' compute fill gas value
             Else
                 nUpDnPctC3.Value = 0                    ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix C4
+            ' Mix C4                            (NOT A, B, D)   **
             nUpDnPctC4.Enabled = False           ' make updn control invisible
             nUpDnPctC4.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (nUpDnPctA4.Value + nUpDnPctB4.Value) <= 100 Then    ' make sure total doesn't exceed 100%
-                nUpDnPctC4.Value = Format(100 - (nUpDnPctA4.Value + nUpDnPctB4.Value), "##0.0") ' compute fill gas value
+            If (nUpDnPctA4.Value + nUpDnPctB4.Value + nUpDnPctD4.Value) <= 100 Then    ' make sure total doesn't exceed 100%
+                nUpDnPctC4.Value = Format(100 - (nUpDnPctA4.Value + nUpDnPctB4.Value + nUpDnPctD4.Value), "##0.0") ' compute fill gas value
             Else
                 nUpDnPctC4.Value = 0                    ' other values too big, so make fill gas 0%
             End If
@@ -1414,8 +1323,8 @@ cleanup_and_exit:       ' close down sequencer operations
 
         '-----------------------------------------------------------------------------------------------------------------
         ' Gas 4
-        If btnFillGas3.Checked = True Then      ' gas 4 selected as fill gas
-            ' Mix D1
+        If btnFillGas3.Checked = True Then      ' gas 4 selected as fill gas   (NOT A, B, C)
+            ' Mix D1                            **
             nUpDnPctD1.Enabled = False           ' make updn control invisible
             nUpDnPctD1.BackColor = Color.Aqua       ' change "fill" text box to blue
             If (nUpDnPctA1.Value + nUpDnPctB1.Value + nUpDnPctC1.Value) <= 100 Then    ' make sure total doesn't exceed 100%
@@ -1424,7 +1333,7 @@ cleanup_and_exit:       ' close down sequencer operations
                 nUpDnPctD1.Value = 0                    ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix D2
+            ' Mix D2                                (NOT A, B, C)   **
             nUpDnPctD2.Enabled = False           ' make updn control invisible
             nUpDnPctD2.BackColor = Color.Aqua       ' change "fill" text box to blue
             If (nUpDnPctA2.Value + nUpDnPctB2.Value + nUpDnPctC2.Value) <= 100 Then    ' make sure total doesn't exceed 100%
@@ -1433,7 +1342,7 @@ cleanup_and_exit:       ' close down sequencer operations
                 nUpDnPctD2.Value = 0                    ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix D3
+            ' Mix D3                                (NOT A, B, C)   **
             nUpDnPctD3.Enabled = False           ' make updn control invisible
             nUpDnPctD3.BackColor = Color.Aqua       ' change "fill" text box to blue
             If (nUpDnPctA3.Value + nUpDnPctB3.Value + nUpDnPctC3.Value) <= 100 Then    ' make sure total doesn't exceed 100%
@@ -1442,7 +1351,7 @@ cleanup_and_exit:       ' close down sequencer operations
                 nUpDnPctD3.Value = 0                    ' other values too big, so make fill gas 0%
             End If
 
-            ' Mix D4
+            ' Mix D4                                (NOT A, B, C)   **
             nUpDnPctD4.Enabled = False           ' make updn control invisible
             nUpDnPctD4.BackColor = Color.Aqua       ' change "fill" text box to blue
             If (nUpDnPctA4.Value + nUpDnPctB4.Value + nUpDnPctC4.Value) <= 100 Then    ' make sure total doesn't exceed 100%
@@ -1473,15 +1382,43 @@ cleanup_and_exit:       ' close down sequencer operations
         'Update total percent boxes by adding up individual gas percentages; should equal 100%!
         totalpct1 = nUpDnPctA1.Value + nUpDnPctB1.Value + nUpDnPctC1.Value + nUpDnPctD1.Value
         tbxTotPct1.Text = totalpct1 & "%"
+        If (totalpct1 > 100) Then
+            tbxTotPct1.ForeColor = Color.Red
+            flgFlowError16 = 1
+        Else
+            tbxTotPct1.ForeColor = Color.Black
+            flgFlowError16 = 0
+        End If
 
         totalpct2 = nUpDnPctA2.Value + nUpDnPctB2.Value + nUpDnPctC2.Value + nUpDnPctD2.Value
         tbxTotPct2.Text = totalpct2 & "%"
+        If (totalpct2 > 100) Then
+            tbxTotPct2.ForeColor = Color.Red
+            flgFlowError17 = 1
+        Else
+            tbxTotPct2.ForeColor = Color.Black
+            flgFlowError17 = 0
+        End If
 
         totalpct3 = nUpDnPctA3.Value + nUpDnPctB3.Value + nUpDnPctC3.Value + nUpDnPctD3.Value
         tbxTotPct3.Text = totalpct3 & "%"
+        If (totalpct3 > 100) Then
+            tbxTotPct3.ForeColor = Color.Red
+            flgFlowError18 = 1
+        Else
+            tbxTotPct3.ForeColor = Color.Black
+            flgFlowError18 = 0
+        End If
 
         totalpct4 = nUpDnPctA4.Value + nUpDnPctB4.Value + nUpDnPctC4.Value + nUpDnPctD4.Value
         tbxTotPct4.Text = totalpct4 & "%"
+        If (totalpct4 > 100) Then
+            tbxTotPct4.ForeColor = Color.Red
+            flgFlowError19 = 1
+        Else
+            tbxTotPct4.ForeColor = Color.Black
+            flgFlowError19 = 0
+        End If
 
         '-----------------------------------------------------------------------------------------------------------------
         '                                      Format display values
@@ -1515,6 +1452,15 @@ cleanup_and_exit:       ' close down sequencer operations
             tbxFlow3Mix1.ForeColor = Color.Black
             flgFlowError3 = 0
         End If
+
+        tbxFlow4Mix1.Text = Int((nUpDnPctD1.Value * nUpDnTFlow1.Value) / 100) & " ml"
+        If Val(tbxFlow4Mix1.Text) > 0 And (Val(tbxFlow4Mix1.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix1.Text) > maxflow4) Then
+            tbxFlow4Mix1.ForeColor = Color.Red
+            flgFlowError3 = 1
+        Else
+            tbxFlow4Mix1.ForeColor = Color.Black
+            flgFlowError3 = 0
+        End If
         '-----------------------------------------------------------------------------------------------------------------
         ' MIX 2
         tbxFlow1Mix2.Text = Int((nUpDnPctA2.Value * nUpDnTFlow2.Value) / 100) & " ml"
@@ -1541,6 +1487,15 @@ cleanup_and_exit:       ' close down sequencer operations
             flgFlowError6 = 1
         Else
             tbxFlow3Mix2.ForeColor = Color.Black
+            flgFlowError6 = 0
+        End If
+
+        tbxFlow4Mix2.Text = Int((nUpDnPctD2.Value * nUpDnTFlow2.Value) / 100) & " ml"
+        If Val(tbxFlow4Mix2.Text) > 0 And (Val(tbxFlow4Mix2.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix2.Text) > maxflow4) Then
+            tbxFlow4Mix2.ForeColor = Color.Red
+            flgFlowError6 = 1
+        Else
+            tbxFlow4Mix2.ForeColor = Color.Black
             flgFlowError6 = 0
         End If
         '-----------------------------------------------------------------------------------------------------------------
@@ -1571,6 +1526,15 @@ cleanup_and_exit:       ' close down sequencer operations
             tbxFlow3Mix3.ForeColor = Color.Black
             flgFlowError9 = 0
         End If
+
+        tbxFlow4Mix3.Text = Int((nUpDnPctD3.Value * nUpDnTFlow4.Value) / 100) & " ml"
+        If Val(tbxFlow4Mix3.Text) > 0 And (Val(tbxFlow4Mix3.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix3.Text) > maxflow3) Then
+            tbxFlow4Mix3.ForeColor = Color.Red
+            flgFlowError9 = 1
+        Else
+            tbxFlow4Mix3.ForeColor = Color.Black
+            flgFlowError9 = 0
+        End If
         '-----------------------------------------------------------------------------------------------------------------
         ' MIX 4
         tbxFlow1Mix4.Text = Int((nUpDnPctA4.Value * nUpDnTFlow4.Value) / 100) & " ml"
@@ -1597,6 +1561,15 @@ cleanup_and_exit:       ' close down sequencer operations
             flgFlowError12 = 1
         Else
             tbxFlow3Mix4.ForeColor = Color.Black
+            flgFlowError12 = 0
+        End If
+
+        tbxFlow4Mix4.Text = Int((nUpDnPctD4.Value * nUpDnTFlow4.Value) / 100) & " ml"
+        If Val(tbxFlow4Mix4.Text) > 0 And (Val(tbxFlow4Mix4.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix4.Text) > maxflow4) Then
+            tbxFlow4Mix4.ForeColor = Color.Red
+            flgFlowError12 = 1
+        Else
+            tbxFlow4Mix4.ForeColor = Color.Black
             flgFlowError12 = 0
         End If
 
@@ -1637,590 +1610,8 @@ cleanup_and_exit:       ' close down sequencer operations
             ledRunning4.BackColor = Color.RosyBrown    ' gray
         End If
 
-        '-----------------------------------------------------------------------------------------------------------------
-        '                                       Autofill gas values
-        '-----------------------------------------------------------------------------------------------------------------
-        ' If fill button is selected, use that gas as fill, otherwise user enters value directly
-        ' Selected: textbox background color = blue, updn control is invisible
-        ' Not selected: textbox background color = white, updn control is visible
-
-        ' Gas 1 ****
-        If btnFillGas0.Checked = True Then      ' gas 1 selected as fill gas
-            ' Mix A1    ****
-            upDnPctA1.Visible = False           ' make updn control invisible
-            tbxPctA1.BackColor = Color.Aqua     ' change "fill" text box to blue
-            If (Val(tbxPctB1.Text) + Val(tbxPctC1.Text) + Val(tbxPctD1.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctA1.Text = Format(100 - (Val(tbxPctB1.Text) + Val(tbxPctC1.Text) + Val(tbxPctD1.Text)), "##0.0") ' compute fill gas value
-                upDnPctA1.Value = -1 * Val(tbxPctA1.Text) * 10  '*****************************
-            Else
-                tbxPctA1.Text = 0                                            ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix A2    ****
-            upDnPctA2.Visible = False           ' make updn control invisible
-            tbxPctA2.BackColor = Color.Aqua     ' change "fill" text box to blue
-            If (Val(tbxPctB2.Text) + Val(tbxPctC2.Text) + Val(tbxPctD2.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctA2.Text = Format(100 - (Val(tbxPctB2.Text) + Val(tbxPctC2.Text) + Val(tbxPctD2.Text)), "##0.0") ' compute fill gas value
-                upDnPctA2.Value = -1 * Val(tbxPctA2.Text) * 10  '*****************************
-            Else
-                tbxPctA2.Text = 0                                            ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix A3    ****
-            upDnPctA3.Visible = False           ' make updn control invisible
-            tbxPctA3.BackColor = Color.Aqua     ' change "fill" text box to blue
-            If (Val(tbxPctB3.Text) + Val(tbxPctC3.Text) + Val(tbxPctD3.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctA3.Text = Format(100 - (Val(tbxPctB3.Text) + Val(tbxPctC3.Text) + Val(tbxPctD3.Text)), "##0.0") ' compute fill gas value
-                upDnPctA3.Value = -1 * Val(tbxPctA3.Text) * 10  '*****************************
-            Else
-                tbxPctA3.Text = 0                                            ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix A4    ****
-            upDnPctA4.Visible = False           ' make updn control invisible
-            tbxPctA4.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctB4.Text) + Val(tbxPctC4.Text) + Val(tbxPctD4.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctA4.Text = Format(100 - (Val(tbxPctB4.Text) + Val(tbxPctC4.Text) + Val(tbxPctD4.Text)), "##0.0") ' compute fill gas value
-                upDnPctA4.Value = -1 * Val(tbxPctA4.Text) * 10  '*****************************
-            Else
-                tbxPctA4.Text = 0                                            ' other values too big, so make fill gas 0%
-            End If
-        Else
-            ' Mix A1
-            upDnPctA1.Visible = True            ' make control visible
-            tbxPctA1.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctA1.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctA1.Text = "" Then tbxPctA1.Text = 0   ' check for null value
-                If Val(tbxPctA1.Text) > 100 Then tbxPctA1.Text = 100   ' limit value to 100%
-                'If Val(tbxPctA1.Text) <> -1 * upDnPctA1.Value / 10 Then upDnPctA1.Value = -1 * Val(tbxPctA1.Text) * 10  '*****************************################
-            End If
-
-            ' Mix A2
-            upDnPctA2.Visible = True            ' make control visible
-            tbxPctA2.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctA2.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctA2.Text = "" Then tbxPctA2.Text = 0   ' check for null value
-                If Val(tbxPctA2.Text) > 100 Then tbxPctA2.Text = 100   ' limit value to 100%
-                'If tbxPctA2 <> upDnPctA2 / 10 Then upDnPctA2 = tbxPctA2 * 10
-            End If
-
-            ' Mix A3
-            upDnPctA3.Visible = True            ' make control visible
-            tbxPctA3.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctA3.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctA3.Text = "" Then tbxPctA3.Text = 0   ' check for null value
-                If Val(tbxPctA3.Text) > 100 Then tbxPctA3.Text = 100   ' limit value to 100%
-                'If tbxPctA3 <> upDnPctA3 / 10 Then upDnPctA3 = tbxPctA3 * 10
-            End If
-
-            ' Mix A4
-            upDnPctA4.Visible = True            ' make control visible
-            tbxPctA4.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctA4.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctA4.Text = "" Then tbxPctA4.Text = 0   ' check for null value
-                If Val(tbxPctA4.Text) > 100 Then tbxPctA4.Text = 100   ' limit value to 100%
-                'If tbxPctA4 <> upDnPctA4 / 10 Then upDnPctA4 = tbxPctA4 * 10
-            End If
-        End If
-
-        '-----------------------------------------------------------------------------------------------------------------
-        ' Gas 2 ****
-        If btnFillGas1.Checked = True Then      ' gas 2 selected as fill gas
-            ' Mix B1    ****
-            upDnPctB1.Visible = False           ' make updn control invisible
-            tbxPctB1.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA1.Text) + Val(tbxPctC1.Text) + Val(tbxPctD1.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctB1.Text = Format(100 - (Val(tbxPctA1.Text) + Val(tbxPctC1.Text) + Val(tbxPctD1.Text)), "##0.0") ' compute fill gas value
-                upDnPctB1.Value = -1 * Val(tbxPctB1.Text) * 10  '*****************************
-            Else
-                tbxPctB1.Text = 0                    ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix B2    ****
-            upDnPctB2.Visible = False           ' make updn control invisible
-            tbxPctB2.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA2.Text) + Val(tbxPctC2.Text) + Val(tbxPctD2.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctB2.Text = Format(100 - (Val(tbxPctA2.Text) + Val(tbxPctC2.Text) + Val(tbxPctD2.Text)), "##0.0") ' compute fill gas value
-                upDnPctB2.Value = -1 * Val(tbxPctB2.Text) * 10  '*****************************
-            Else
-                tbxPctB2.Text = 0                    ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix B3    ****
-            upDnPctB3.Visible = False           ' make updn control invisible
-            tbxPctB3.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA3.Text) + Val(tbxPctC3.Text) + Val(tbxPctD3.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctB3.Text = Format(100 - (Val(tbxPctA3.Text) + Val(tbxPctC3.Text) + Val(tbxPctD3.Text)), "##0.0") ' compute fill gas value
-                upDnPctB3.Value = -1 * Val(tbxPctB3.Text) * 10  '*****************************
-            Else
-                tbxPctB3.Text = 0                     ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix B4    ****
-            upDnPctB4.Visible = False           ' make updn control invisible
-            tbxPctB4.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA4.Text) + Val(tbxPctC4.Text) + Val(tbxPctD4.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctB4.Text = Format(100 - (Val(tbxPctA4.Text) + Val(tbxPctC4.Text) + Val(tbxPctD4.Text)), "##0.0") ' compute fill gas value
-                upDnPctB4.Value = -1 * Val(tbxPctB4.Text) * 10  '*****************************
-            Else
-                tbxPctB4.Text = 0                    ' other values too big, so make fill gas 0%
-            End If
-        Else
-            ' Mix B1
-            upDnPctB1.Visible = True            ' make control visible
-            tbxPctB1.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctB1.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctB1.Text = "" Then tbxPctB1.Text = 0   ' check for null value
-                If Val(tbxPctB1.Text) > 100 Then tbxPctB1.Text = 100   ' limit value to 100%
-                'If tbxPctB1 <> upDnPctB1 / 10 Then upDnPctB1 = tbxPctB1 * 10
-            End If
-
-            ' Mix B2
-            upDnPctB2.Visible = True            ' make control visible
-            tbxPctB2.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctB2.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctB2.Text = "" Then tbxPctB2.Text = 0   ' check for null value
-                If Val(tbxPctB2.Text) > 100 Then tbxPctB2.Text = 100   ' limit value to 100%
-                'If tbxPctB2 <> upDnPctB2 / 10 Then upDnPctB2 = tbxPctB2 * 10
-            End If
-
-            ' Mix B3
-            upDnPctB3.Visible = True            ' make control visible
-            tbxPctB3.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctB3.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctB3.Text = "" Then tbxPctB3.Text = 0   ' check for null value
-                If Val(tbxPctB3.Text) > 100 Then tbxPctB3.Text = 100   ' limit value to 100%
-                'If tbxPctB3 <> upDnPctB3 / 10 Then upDnPctB3 = tbxPctB3 * 10
-            End If
-
-            ' Mix B4
-            upDnPctB4.Visible = True            ' make control visible
-            tbxPctB4.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctB4.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctB4.Text = "" Then tbxPctB4.Text = 0   ' check for null value
-                If Val(tbxPctB4.Text) > 100 Then tbxPctB4.Text = 100   ' limit value to 100%
-                'If tbxPctB4 <> upDnPctB4 / 10 Then upDnPctB4 = tbxPctB4 * 10
-            End If
-        End If
-
-        '-----------------------------------------------------------------------------------------------------------------
-        ' Gas 3 ****
-        If btnFillGas2.Checked = True Then      ' gas 3 selected as fill gas
-            ' Mix C1
-            upDnPctC1.Visible = False           ' make updn control invisible
-            tbxPctC1.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA1.Text) + Val(tbxPctB1.Text) + Val(tbxPctD1.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctC1.Text = Format(100 - (Val(tbxPctA1.Text) + Val(tbxPctB1.Text) + Val(tbxPctD1.Text)), "##0.0") ' compute fill gas value
-                upDnPctC1.Value = -1 * Val(tbxPctC1.Text) * 10  '*****************************
-            Else
-                tbxPctC1.Text = 0                    ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix C2    ****
-            upDnPctC2.Visible = False           ' make updn control invisible
-            tbxPctC2.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA2.Text) + Val(tbxPctB2.Text) + Val(tbxPctD2.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctC2.Text = Format(100 - (Val(tbxPctA2.Text) + Val(tbxPctB2.Text) + Val(tbxPctD2.Text)), "##0.0") ' compute fill gas value
-                upDnPctC2.Value = -1 * Val(tbxPctC2.Text) * 10  '*****************************
-            Else
-                tbxPctC2.Text = 0                    ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix C3    ****
-            upDnPctC3.Visible = False           ' make updn control invisible
-            tbxPctC3.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA3.Text) + Val(tbxPctB3.Text) + Val(tbxPctD3.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctC3.Text = Format(100 - (Val(tbxPctA3.Text) + Val(tbxPctB3.Text) + Val(tbxPctD3.Text)), "##0.0") ' compute fill gas value
-                upDnPctC3.Value = -1 * Val(tbxPctC3.Text) * 10  '*****************************
-            Else
-                tbxPctC3.Text = 0                    ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix C4    ****
-            upDnPctC4.Visible = False           ' make updn control invisible
-            tbxPctC4.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA4.Text) + Val(tbxPctB4.Text) + Val(tbxPctD4.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctC4.Text = Format(100 - (Val(tbxPctA4.Text) + Val(tbxPctB4.Text) + Val(tbxPctD4.Text)), "##0.0") ' compute fill gas value
-                upDnPctC4.Value = -1 * Val(tbxPctC4.Text) * 10  '*****************************
-            Else
-                tbxPctC4.Text = 0                    ' other values too big, so make fill gas 0%
-            End If
-        Else
-            ' Mix C1
-            upDnPctC1.Visible = True            ' make control visible
-            tbxPctC1.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctC1.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctC1.Text = "" Then tbxPctC1.Text = 0   ' check for null value
-                If Val(tbxPctC1.Text) > 100 Then tbxPctC1.Text = 100   ' limit value to 100%
-                'If tbxPctC1 <> upDnPctC1 / 10 Then upDnPctC1 = tbxPctC1 * 10
-            End If
-
-            ' Mix C2
-            upDnPctC2.Visible = True            ' make control visible
-            tbxPctC2.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctC2.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctC2.Text = "" Then tbxPctC2.Text = 0   ' check for null value
-                If Val(tbxPctC2.Text) > 100 Then tbxPctC2.Text = 100   ' limit value to 100%
-                'If tbxPctC2 <> upDnPctC2 / 10 Then upDnPctC2 = tbxPctC2 * 10
-            End If
-
-            ' Mix C3
-            upDnPctC3.Visible = True            ' make control visible
-            tbxPctC3.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctC3.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctC3.Text = "" Then tbxPctC3.Text = 0   ' check for null value
-                If Val(tbxPctC3.Text) > 100 Then tbxPctC3.Text = 100   ' limit value to 100%
-                'If tbxPctC3 <> upDnPctC3 / 10 Then upDnPctC3 = tbxPctC3 * 10
-            End If
-
-            ' Mix C4
-            upDnPctC4.Visible = True            ' make control visible
-            tbxPctC4.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctC4.Text <> "." Then         ' don't act if entering value less than 1, .x
-                If tbxPctC4.Text = "" Then tbxPctC4.Text = 0   ' check for null value
-                If Val(tbxPctC4.Text) > 100 Then tbxPctC4.Text = 100   ' limit value to 100%
-                'If tbxPctC4 <> upDnPctC4 / 10 Then upDnPctC4 = tbxPctC4 * 10
-            End If
-        End If
-
-        '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-        '-----------------------------------------------------------------------------------------------------------------
-        ' Gas 4
-        If btnFillGas3.Checked = True Then      ' gas 4 selected as fill gas
-            ' Mix D1    ****
-            upDnPctD1.Visible = False           ' make updn control invisible
-            tbxPctD1.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA1.Text) + Val(tbxPctB1.Text) + Val(tbxPctC1.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctD1.Text = Format(100 - (Val(tbxPctA1.Text) + Val(tbxPctB1.Text) + Val(tbxPctC1.Text)), "##0.0") ' compute fill gas value
-                upDnPctD1.Value = -1 * Val(tbxPctD1.Text) * 10  '*****************************
-            Else
-                tbxPctD1.Text = 0                    ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix D2    ****
-            upDnPctD2.Visible = False           ' make updn control invisible
-            tbxPctD2.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA2.Text) + Val(tbxPctB2.Text) + Val(tbxPctC2.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctD2.Text = Format(100 - (Val(tbxPctA2.Text) + Val(tbxPctB2.Text) + Val(tbxPctC2.Text)), "##0.0") ' compute fill gas value
-                upDnPctD2.Value = -1 * Val(tbxPctD2.Text) * 10  '*****************************
-            Else
-                tbxPctD2.Text = 0                    ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix D3    ****
-            upDnPctD3.Visible = False           ' make updn control invisible
-            tbxPctD3.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA3.Text) + Val(tbxPctB3.Text) + Val(tbxPctC3.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctD3.Text = Format(100 - (Val(tbxPctA3.Text) + Val(tbxPctB3.Text) + Val(tbxPctC3.Text)), "##0.0") ' compute fill gas value
-                upDnPctD3.Value = -1 * Val(tbxPctD3.Text) * 10  '*****************************
-            Else
-                tbxPctD3.Text = 0                    ' other values too big, so make fill gas 0%
-            End If
-
-            ' Mix D4
-            upDnPctD4.Visible = False           ' make updn control invisible
-            tbxPctD4.BackColor = Color.Aqua       ' change "fill" text box to blue
-            If (Val(tbxPctA4.Text) + Val(tbxPctB4.Text) + Val(tbxPctC4.Text)) <= 100 Then    ' make sure total doesn't exceed 100%
-                tbxPctD4.Text = Format(100 - (Val(tbxPctA4.Text) + Val(tbxPctB4.Text) + Val(tbxPctC4.Text)), "##0.0") ' compute fill gas value
-                upDnPctD4.Value = -1 * Val(tbxPctD4.Text) * 10  '*****************************
-            Else
-                tbxPctD4.Text = 0                    ' other values too big, so make fill gas 0%
-            End If
-        Else
-            ' Mix D1    ****
-            upDnPctD1.Visible = True            ' make control visible
-            tbxPctD1.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctD1.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctD1.Text = "" Then tbxPctD1.Text = 0   ' check for null value
-                If Val(tbxPctD1.Text) > 100 Then tbxPctD1.Text = 100   ' limit value to 100%
-                'If tbxPctC1 <> upDnPctC1 / 10 Then upDnPctC1 = tbxPctC1 * 10
-            End If
-
-            ' Mix D2    ****
-            upDnPctD2.Visible = True            ' make control visible
-            tbxPctD2.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctD2.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctD2.Text = "" Then tbxPctD2.Text = 0   ' check for null value
-                If Val(tbxPctD2.Text) > 100 Then tbxPctD2.Text = 100   ' limit value to 100%
-                'If tbxPctC2 <> upDnPctC2 / 10 Then upDnPctC2 = tbxPctC2 * 10
-            End If
-
-            ' Mix D3    ****
-            upDnPctD3.Visible = True            ' make control visible
-            tbxPctD3.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctD3.Text <> "." Then             ' don't act if entering value less than 1, .x
-                If tbxPctD3.Text = "" Then tbxPctD3.Text = 0   ' check for null value
-                If Val(tbxPctD3.Text) > 100 Then tbxPctD3.Text = 100   ' limit value to 100%
-                'If tbxPctC3 <> upDnPctC3 / 10 Then upDnPctC3 = tbxPctC3 * 10
-            End If
-
-            ' Mix D4    ****
-            upDnPctD4.Visible = True            ' make control visible
-            tbxPctD4.BackColor = Color.White       ' make "fill" text box white
-            If tbxPctD4.Text <> "." Then         ' don't act if entering value less than 1, .x
-                If tbxPctD4.Text = "" Then tbxPctD4.Text = 0   ' check for null value
-                If Val(tbxPctD4.Text) > 100 Then tbxPctD4.Text = 100   ' limit value to 100%
-                'If tbxPctC4 <> upDnPctC4 / 10 Then upDnPctC4 = tbxPctC4 * 10
-            End If
-        End If
-        '&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-        '-----------------------------------------------------------------------------------------------------------------
-        ' Update total percent boxes by adding up individual gas percentages; should equal 100%!
-        '  if greater than 100% (because of fill gas!) then change text to RED
-        totalpct1 = Val(tbxPctA1.Text) + Val(tbxPctB1.Text) + Val(tbxPctC1.Text) + Val(tbxPctD1.Text)
-        tbxTotPct1.Text = totalpct1 & "%"
-        If totalpct1 > 100 Then
-            tbxTotPct1.ForeColor = Color.Red
-            flgFlowError16 = 1
-        Else
-            tbxTotPct1.ForeColor = Color.Black
-            flgFlowError16 = 0
-        End If
-
-        totalpct2 = Val(tbxPctA2.Text) + Val(tbxPctB2.Text) + Val(tbxPctC2.Text) + Val(tbxPctD2.Text)
-        tbxTotPct2.Text = totalpct2 & "%"
-        If totalpct2 > 100 Then
-            tbxTotPct2.ForeColor = Color.Red
-            flgFlowError17 = 1
-        Else
-            tbxTotPct2.ForeColor = Color.Black
-            flgFlowError17 = 0
-        End If
-
-        totalpct3 = Val(tbxPctA3.Text) + Val(tbxPctB3.Text) + Val(tbxPctC3.Text) + Val(tbxPctD3.Text)
-        tbxTotPct3.Text = totalpct3 & "%"
-        If totalpct3 > 100 Then
-            tbxTotPct3.ForeColor = Color.Red
-            flgFlowError18 = 1
-        Else
-            tbxTotPct3.ForeColor = Color.Black
-            flgFlowError18 = 0
-        End If
-
-        totalpct4 = Val(tbxPctA4.Text) + Val(tbxPctB4.Text) + Val(tbxPctC4.Text) + Val(tbxPctD4.Text)
-        tbxTotPct4.Text = totalpct4 & "%"
-        If totalpct4 > 100 Then
-            tbxTotPct4.ForeColor = Color.Red
-            flgFlowError19 = 1
-        Else
-            tbxTotPct4.ForeColor = Color.Black
-            flgFlowError19 = 0
-        End If
 
 
-
-        '-----------------------------------------------------------------------------------------------------------------
-        ' Update individual mix flow text boxes from updn controls
-        tbxPctA1.Text = (upDnPctA1.Value * -1) / 10
-        tbxPctB1.Text = (upDnPctB1.Value * -1) / 10
-        tbxPctC1.Text = (upDnPctC1.Value * -1) / 10
-        tbxPctD1.Text = (upDnPctD1.Value * -1) / 10
-
-        tbxPctA2.Text = (upDnPctA2.Value * -1) / 10
-        tbxPctB2.Text = (upDnPctB2.Value * -1) / 10
-        tbxPctC2.Text = (upDnPctC2.Value * -1) / 10
-        tbxPctD2.Text = (upDnPctD2.Value * -1) / 10
-
-        tbxPctA3.Text = (upDnPctA3.Value * -1) / 10
-        tbxPctB3.Text = (upDnPctB3.Value * -1) / 10
-        tbxPctC3.Text = (upDnPctC3.Value * -1) / 10
-        tbxPctD3.Text = (upDnPctD3.Value * -1) / 10
-
-        tbxPctA4.Text = (upDnPctA4.Value * -1) / 10
-        tbxPctB4.Text = (upDnPctB4.Value * -1) / 10
-        tbxPctC4.Text = (upDnPctC4.Value * -1) / 10
-        tbxPctD4.Text = (upDnPctD4.Value * -1) / 10
-
-        '-----------------------------------------------------------------------------------------------------------------
-        '                                      Format display values
-        '-----------------------------------------------------------------------------------------------------------------
-        ' update individual flow displays for all 4 mixes
-        ' color text red if outside range for that channel's flow controller
-        ' MIX 1 ****
-
-        tbxFlow1Mix1.Text = (Int((Val(tbxPctA1.Text) * Val(tbxTFlow1.Text)) / 100)) & " ml"
-        If Val(tbxFlow1Mix1.Text) > 0 And (Val(tbxFlow1Mix1.Text) < (maxflow1 / 100) Or Val(tbxFlow1Mix1.Text) > maxflow1) Then ' display 0ml is ok
-            tbxFlow1Mix1.ForeColor = Color.Red  ' red bold text to indicate error
-            'tbxFlow1Mix1.Text.bold = True
-            flgFlowError1 = 1
-        Else
-            tbxFlow1Mix1.ForeColor = Color.Black   ' normal black text
-            'tbxFlow1Mix1.FontBold = False
-            flgFlowError1 = 0
-        End If
-
-        tbxFlow2Mix1.Text = (Int((Val(tbxPctB1.Text) * Val(tbxTFlow1.Text)) / 100)) & " ml"
-        If Val(tbxFlow2Mix1.Text) > 0 And (Val(tbxFlow2Mix1.Text) < (maxflow2 / 100) Or Val(tbxFlow2Mix1.Text) > maxflow2) Then
-            tbxFlow2Mix1.ForeColor = Color.Red
-            'tbxFlow2Mix1.FontBold = True
-            flgFlowError2 = 1
-        Else
-            tbxFlow2Mix1.ForeColor = Color.Black
-            'tbxFlow2Mix1.FontBold = False
-            flgFlowError2 = 0
-        End If
-
-        tbxFlow3Mix1.Text = (Int((Val(tbxPctC1.Text) * Val(tbxTFlow1.Text)) / 100)) & " ml"
-        If Val(tbxFlow3Mix1.Text) > 0 And (Val(tbxFlow3Mix1.Text) < (maxflow3 / 100) Or Val(tbxFlow3Mix1.Text) > maxflow3) Then
-            tbxFlow3Mix1.ForeColor = Color.Red
-            'tbxFlow3Mix1.FontBold = True
-            flgFlowError3 = 1
-        Else
-            tbxFlow3Mix1.ForeColor = Color.Black
-            'tbxFlow3Mix1.FontBold = False
-            flgFlowError3 = 0
-        End If
-
-        tbxFlow4Mix1.Text = (Int((Val(tbxPctD1.Text) * Val(tbxTFlow1.Text)) / 100)) & " ml"
-        If Val(tbxFlow4Mix1.Text) > 0 And (Val(tbxFlow4Mix1.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix1.Text) > maxflow4) Then
-            tbxFlow4Mix1.ForeColor = Color.Red
-            'tbxFlow3Mix1.FontBold = True
-            flgFlowError4 = 1
-        Else
-            tbxFlow4Mix1.ForeColor = Color.Black
-            'tbxFlow3Mix1.FontBold = False
-            flgFlowError4 = 0
-        End If
-        '-----------------------------------------------------------------------------------------------------------------
-        ' MIX 2 ****
-        tbxFlow1Mix2.Text = (Int((Val(tbxPctA2.Text) * Val(tbxTFlow2.Text)) / 100)) & " ml"
-        If Val(tbxFlow1Mix2.Text) > 0 And (Val(tbxFlow1Mix2.Text) < (maxflow1 / 100) Or Val(tbxFlow1Mix2.Text) > maxflow1) Then
-            tbxFlow1Mix2.ForeColor = Color.Red
-            'tbxFlow1Mix2.FontBold = True
-            flgFlowError4 = 1
-        Else
-            tbxFlow1Mix2.ForeColor = Color.Black
-            'tbxFlow1Mix2.FontBold = False
-            flgFlowError4 = 0
-        End If
-
-        tbxFlow2Mix2.Text = (Int((Val(tbxPctB2.Text) * Val(tbxTFlow2.Text)) / 100)) & " ml"
-        If Val(tbxFlow2Mix2.Text) > 0 And (Val(tbxFlow2Mix2.Text) < (maxflow2 / 100) Or Val(tbxFlow2Mix2.Text) > maxflow2) Then
-            tbxFlow2Mix2.ForeColor = Color.Red
-            'tbxFlow2Mix2.FontBold = True
-            flgFlowError5 = 1
-        Else
-            tbxFlow2Mix2.ForeColor = Color.Black
-            'tbxFlow2Mix2.FontBold = False
-            flgFlowError5 = 0
-        End If
-
-        tbxFlow3Mix2.Text = (Int((Val(tbxPctC2.Text) * Val(tbxTFlow2.Text)) / 100)) & " ml"
-        If Val(tbxFlow3Mix2.Text) > 0 And (Val(tbxFlow3Mix2.Text) < (maxflow3 / 100) Or Val(tbxFlow3Mix2.Text) > maxflow3) Then
-            tbxFlow3Mix2.ForeColor = Color.Red
-            'tbxFlow3Mix2.FontBold = True
-            flgFlowError6 = 1
-        Else
-            tbxFlow3Mix2.ForeColor = Color.Black
-            'tbxFlow3Mix2.FontBold = False
-            flgFlowError6 = 0
-        End If
-
-        tbxFlow4Mix2.Text = (Int((Val(tbxPctD2.Text) * Val(tbxTFlow2.Text)) / 100)) & " ml"   '###############################################
-        If Val(tbxFlow4Mix2.Text) > 0 And (Val(tbxFlow4Mix2.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix2.Text) > maxflow4) Then
-            tbxFlow4Mix2.ForeColor = Color.Red
-            'tbxFlow3Mix2.FontBold = True
-            flgFlowError6 = 1
-        Else
-            tbxFlow4Mix2.ForeColor = Color.Black
-            'tbxFlow3Mix2.FontBold = False
-            flgFlowError7 = 0
-        End If
-
-        '-----------------------------------------------------------------------------------------------------------------
-        ' MIX 3 ****
-        tbxFlow1Mix3.Text = (Int((Val(tbxPctA3.Text) * Val(tbxTFlow3.Text)) / 100)) & " ml"
-        If Val(tbxFlow1Mix3.Text) > 0 And (Val(tbxFlow1Mix3.Text) < (maxflow1 / 100) Or Val(tbxFlow1Mix3.Text) > maxflow1) Then
-            tbxFlow1Mix3.ForeColor = Color.Red
-            'tbxFlow1Mix3.FontBold = True
-            flgFlowError7 = 1
-        Else
-            tbxFlow1Mix3.ForeColor = Color.Black
-            'tbxFlow1Mix3.FontBold = False
-            flgFlowError7 = 0
-        End If
-
-        tbxFlow2Mix3.Text = (Int((Val(tbxPctB3.Text) * Val(tbxTFlow3.Text)) / 100)) & " ml"
-        If Val(tbxFlow2Mix3.Text) > 0 And (Val(tbxFlow2Mix3.Text) < (maxflow2 / 100) Or Val(tbxFlow2Mix3.Text) > maxflow2) Then
-            tbxFlow2Mix3.ForeColor = Color.Red
-            'tbxFlow2Mix3.FontBold = True
-            flgFlowError8 = 1
-        Else
-            tbxFlow2Mix3.ForeColor = Color.Black
-            'tbxFlow2Mix3.FontBold = False
-            flgFlowError8 = 0
-        End If
-
-        tbxFlow3Mix3.Text = (Int((Val(tbxPctC3.Text) * Val(tbxTFlow3.Text)) / 100)) & " ml"
-        If Val(tbxFlow3Mix3.Text) > 0 And (Val(tbxFlow3Mix3.Text) < (maxflow3 / 100) Or Val(tbxFlow3Mix3.Text) > maxflow3) Then
-            tbxFlow3Mix3.ForeColor = Color.Red
-            'tbxFlow3Mix3.FontBold = True
-            flgFlowError9 = 1
-        Else
-            tbxFlow3Mix3.ForeColor = Color.Black
-            'tbxFlow3Mix3.FontBold = False
-            flgFlowError9 = 0
-        End If
-
-        tbxFlow4Mix3.Text = (Int((Val(tbxPctD3.Text) * Val(tbxTFlow3.Text)) / 100)) & " ml"  '#############################################
-        If Val(tbxFlow4Mix3.Text) > 0 And (Val(tbxFlow4Mix3.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix3.Text) > maxflow4) Then
-            tbxFlow4Mix3.ForeColor = Color.Red
-            'tbxFlow3Mix3.FontBold = True
-            flgFlowError10 = 1
-        Else
-            tbxFlow4Mix3.ForeColor = Color.Black
-            'tbxFlow3Mix3.FontBold = False
-            flgFlowError10 = 0
-        End If
-
-        '-----------------------------------------------------------------------------------------------------------------
-        ' MIX 4 ****
-        tbxFlow1Mix4.Text = (Int((Val(tbxPctA4.Text) * Val(tbxTFlow4.Text)) / 100)) & " ml"
-        If Val(tbxFlow1Mix4.Text) > 0 And (Val(tbxFlow1Mix4.Text) < (maxflow1 / 100) Or Val(tbxFlow1Mix4.Text) > maxflow1) Then
-            tbxFlow1Mix4.ForeColor = Color.Red
-            'tbxFlow1Mix4.FontBold = True
-            flgFlowError10 = 1
-        Else
-            tbxFlow1Mix4.ForeColor = Color.Black
-            'tbxFlow1Mix4.FontBold = False
-            flgFlowError10 = 0
-        End If
-
-        tbxFlow2Mix4.Text = (Int((Val(tbxPctB4.Text) * Val(tbxTFlow4.Text)) / 100)) & " ml"
-        If Val(tbxFlow2Mix4.Text) > 0 And (Val(tbxFlow2Mix4.Text) < (maxflow2 / 100) Or Val(tbxFlow2Mix4.Text) > maxflow2) Then
-            tbxFlow2Mix4.ForeColor = Color.Red
-            'tbxFlow2Mix4.FontBold = True
-            flgFlowError11 = 1
-        Else
-            tbxFlow2Mix4.ForeColor = Color.Black
-            'tbxFlow2Mix4.FontBold = False
-            flgFlowError11 = 0
-        End If
-
-        tbxFlow3Mix4.Text = (Int((Val(tbxPctC4.Text) * Val(tbxTFlow4.Text)) / 100)) & " ml"
-        If Val(tbxFlow3Mix4.Text) > 0 And (Val(tbxFlow3Mix4.Text) < (maxflow3 / 100) Or Val(tbxFlow3Mix4.Text) > maxflow3) Then
-            tbxFlow3Mix4.ForeColor = Color.Red
-            'tbxFlow3Mix4.FontBold = True
-            flgFlowError12 = 1
-        Else
-            tbxFlow3Mix4.ForeColor = Color.Black
-            'tbxFlow3Mix4.FontBold = False
-            flgFlowError12 = 0
-        End If
-
-        tbxFlow4Mix4.Text = (Int((Val(tbxPctD4.Text) * Val(tbxTFlow4.Text)) / 100)) & " ml"
-        If Val(tbxFlow4Mix4.Text) > 0 And (Val(tbxFlow4Mix4.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix4.Text) > maxflow4) Then
-            tbxFlow4Mix4.ForeColor = Color.Red
-            'tbxFlow3Mix4.FontBold = True
-            flgFlowError13 = 1
-        Else
-            tbxFlow4Mix4.ForeColor = Color.Black
-            'tbxFlow3Mix4.FontBold = False
-            flgFlowError13 = 0
-        End If
-
-        Call tbxErrMsg_TextChanged(sender, e)
 
 jumparound:     ' vector here on error during value entry
 
