@@ -23,9 +23,9 @@ Partial Class GSMTimed
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea7 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend7 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series7 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.ComboGas0 = New System.Windows.Forms.ComboBox()
         Me.ComboGas1 = New System.Windows.Forms.ComboBox()
         Me.ComboGas2 = New System.Windows.Forms.ComboBox()
@@ -243,6 +243,7 @@ Partial Class GSMTimed
         Me.nUpDnTFlow2 = New System.Windows.Forms.NumericUpDown()
         Me.nUpDnTFlow3 = New System.Windows.Forms.NumericUpDown()
         Me.nUpDnTFlow4 = New System.Windows.Forms.NumericUpDown()
+        Me.repeatTimer = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -309,6 +310,7 @@ Partial Class GSMTimed
         '
         'progTimer
         '
+        Me.progTimer.Interval = 1000
         '
         'tbxFlow1Mix1
         '
@@ -1679,7 +1681,7 @@ Partial Class GSMTimed
         'ComboBox1
         '
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox1.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox1.Location = New System.Drawing.Point(138, 264)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(82, 21)
@@ -1689,7 +1691,7 @@ Partial Class GSMTimed
         'ComboBox2
         '
         Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox2.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox2.Location = New System.Drawing.Point(138, 291)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(82, 21)
@@ -1699,7 +1701,7 @@ Partial Class GSMTimed
         'ComboBox3
         '
         Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox3.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox3.Location = New System.Drawing.Point(138, 318)
         Me.ComboBox3.Name = "ComboBox3"
         Me.ComboBox3.Size = New System.Drawing.Size(82, 21)
@@ -1709,7 +1711,7 @@ Partial Class GSMTimed
         'ComboBox4
         '
         Me.ComboBox4.FormattingEnabled = True
-        Me.ComboBox4.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox4.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox4.Location = New System.Drawing.Point(138, 343)
         Me.ComboBox4.Name = "ComboBox4"
         Me.ComboBox4.Size = New System.Drawing.Size(82, 21)
@@ -1719,7 +1721,7 @@ Partial Class GSMTimed
         'ComboBox5
         '
         Me.ComboBox5.FormattingEnabled = True
-        Me.ComboBox5.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox5.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox5.Location = New System.Drawing.Point(138, 369)
         Me.ComboBox5.Name = "ComboBox5"
         Me.ComboBox5.Size = New System.Drawing.Size(82, 21)
@@ -1729,7 +1731,7 @@ Partial Class GSMTimed
         'ComboBox6
         '
         Me.ComboBox6.FormattingEnabled = True
-        Me.ComboBox6.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox6.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox6.Location = New System.Drawing.Point(138, 396)
         Me.ComboBox6.Name = "ComboBox6"
         Me.ComboBox6.Size = New System.Drawing.Size(82, 21)
@@ -1739,7 +1741,7 @@ Partial Class GSMTimed
         'ComboBox7
         '
         Me.ComboBox7.FormattingEnabled = True
-        Me.ComboBox7.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox7.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox7.Location = New System.Drawing.Point(138, 424)
         Me.ComboBox7.Name = "ComboBox7"
         Me.ComboBox7.Size = New System.Drawing.Size(82, 21)
@@ -1749,7 +1751,7 @@ Partial Class GSMTimed
         'ComboBox8
         '
         Me.ComboBox8.FormattingEnabled = True
-        Me.ComboBox8.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox8.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox8.Location = New System.Drawing.Point(138, 450)
         Me.ComboBox8.Name = "ComboBox8"
         Me.ComboBox8.Size = New System.Drawing.Size(82, 21)
@@ -1759,7 +1761,7 @@ Partial Class GSMTimed
         'ComboBox9
         '
         Me.ComboBox9.FormattingEnabled = True
-        Me.ComboBox9.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox9.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox9.Location = New System.Drawing.Point(138, 477)
         Me.ComboBox9.Name = "ComboBox9"
         Me.ComboBox9.Size = New System.Drawing.Size(82, 21)
@@ -1769,7 +1771,7 @@ Partial Class GSMTimed
         'ComboBox10
         '
         Me.ComboBox10.FormattingEnabled = True
-        Me.ComboBox10.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox10.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox10.Location = New System.Drawing.Point(138, 503)
         Me.ComboBox10.Name = "ComboBox10"
         Me.ComboBox10.Size = New System.Drawing.Size(82, 21)
@@ -1779,7 +1781,7 @@ Partial Class GSMTimed
         'ComboBox11
         '
         Me.ComboBox11.FormattingEnabled = True
-        Me.ComboBox11.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox11.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox11.Location = New System.Drawing.Point(138, 528)
         Me.ComboBox11.Name = "ComboBox11"
         Me.ComboBox11.Size = New System.Drawing.Size(82, 21)
@@ -1789,7 +1791,7 @@ Partial Class GSMTimed
         'ComboBox12
         '
         Me.ComboBox12.FormattingEnabled = True
-        Me.ComboBox12.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox12.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox12.Location = New System.Drawing.Point(138, 555)
         Me.ComboBox12.Name = "ComboBox12"
         Me.ComboBox12.Size = New System.Drawing.Size(82, 21)
@@ -1799,7 +1801,7 @@ Partial Class GSMTimed
         'ComboBox13
         '
         Me.ComboBox13.FormattingEnabled = True
-        Me.ComboBox13.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox13.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox13.Location = New System.Drawing.Point(138, 580)
         Me.ComboBox13.Name = "ComboBox13"
         Me.ComboBox13.Size = New System.Drawing.Size(82, 21)
@@ -1809,7 +1811,7 @@ Partial Class GSMTimed
         'ComboBox14
         '
         Me.ComboBox14.FormattingEnabled = True
-        Me.ComboBox14.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox14.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox14.Location = New System.Drawing.Point(138, 606)
         Me.ComboBox14.Name = "ComboBox14"
         Me.ComboBox14.Size = New System.Drawing.Size(82, 21)
@@ -1819,7 +1821,7 @@ Partial Class GSMTimed
         'ComboBox15
         '
         Me.ComboBox15.FormattingEnabled = True
-        Me.ComboBox15.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "STOP", "NONE"})
+        Me.ComboBox15.Items.AddRange(New Object() {"Mix 1", "Mix 2", "Mix 3", "Mix 4", "REPEAT", "REPEAT Time", "GOTO", "PAUSE", "STOP", "NONE"})
         Me.ComboBox15.Location = New System.Drawing.Point(138, 633)
         Me.ComboBox15.Name = "ComboBox15"
         Me.ComboBox15.Size = New System.Drawing.Size(82, 21)
@@ -1849,23 +1851,23 @@ Partial Class GSMTimed
         'Chart2
         '
         Me.Chart2.BackColor = System.Drawing.Color.Gainsboro
-        ChartArea7.AxisX.IsLabelAutoFit = False
-        ChartArea7.AxisX.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.69307!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea7.AxisX.LabelStyle.ForeColor = System.Drawing.Color.RoyalBlue
-        ChartArea7.AxisX.MajorGrid.Enabled = False
-        ChartArea7.AxisY2.IsLabelAutoFit = False
-        ChartArea7.AxisY2.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.267326!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea7.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea7)
-        Legend7.Enabled = False
-        Legend7.Name = "Legend1"
-        Me.Chart2.Legends.Add(Legend7)
+        ChartArea1.AxisX.IsLabelAutoFit = False
+        ChartArea1.AxisX.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.69307!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.RoyalBlue
+        ChartArea1.AxisX.MajorGrid.Enabled = False
+        ChartArea1.AxisY2.IsLabelAutoFit = False
+        ChartArea1.AxisY2.LabelStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.267326!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea1)
+        Legend1.Enabled = False
+        Legend1.Name = "Legend1"
+        Me.Chart2.Legends.Add(Legend1)
         Me.Chart2.Location = New System.Drawing.Point(412, 454)
         Me.Chart2.Name = "Chart2"
-        Series7.ChartArea = "ChartArea1"
-        Series7.Legend = "Legend1"
-        Series7.Name = "Series1"
-        Me.Chart2.Series.Add(Series7)
+        Series1.ChartArea = "ChartArea1"
+        Series1.Legend = "Legend1"
+        Series1.Name = "Series1"
+        Me.Chart2.Series.Add(Series1)
         Me.Chart2.Size = New System.Drawing.Size(250, 178)
         Me.Chart2.TabIndex = 228
         Me.Chart2.Text = "Chart2"
@@ -2255,6 +2257,10 @@ Partial Class GSMTimed
         Me.nUpDnTFlow4.Size = New System.Drawing.Size(68, 20)
         Me.nUpDnTFlow4.TabIndex = 276
         '
+        'repeatTimer
+        '
+        Me.repeatTimer.Interval = 1000
+        '
         'GSMTimed
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2461,7 +2467,7 @@ Partial Class GSMTimed
         Me.Controls.Add(Me.ComboGas0)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "GSMTimed"
-        Me.Text = "GSM-4-CommVS v4.51"
+        Me.Text = "GSM-4-CommVS v4.71"
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
@@ -2710,4 +2716,5 @@ Partial Class GSMTimed
     Friend WithEvents nUpDnTFlow2 As NumericUpDown
     Friend WithEvents nUpDnTFlow3 As NumericUpDown
     Friend WithEvents nUpDnTFlow4 As NumericUpDown
+    Public WithEvents repeatTimer As Timer
 End Class

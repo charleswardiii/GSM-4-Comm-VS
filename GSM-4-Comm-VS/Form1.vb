@@ -1,9 +1,10 @@
 ﻿' *****************************************************************************************************
 ' GSM-4-CommVS 
-' (c) 2017 CWE, Inc.
+' (c) 2020 CWE, Inc.
+' 2020-07-03 v4.71
 ' 2017-12-20 v2.61
-' created with Visual Basic.net 2015
-' Conutrol program for CWE GSM-3 Gas Mixer
+' created with Visual Studio 2019   vb.net
+' Conutrol program for CWE GSM-4 Gas Mixer
 ' *****************************************************************************************************
 Option Explicit On
 
@@ -22,13 +23,13 @@ Public Class GSMTimed
     Dim TotFlow1, TotFlow2, TotFlow3, TotFlow4
     Dim flgFlowError1, flgFlowError2, flgFlowError3, flgFlowError4, flgFlowError5
     Dim flgFlowError6, flgFlowError7, flgFlowError8, flgFlowError9, flgFlowError10
-    Dim flgFlowError11, flgFlowError12, flgFlowError13
-    Dim flgFlowError16, flgFlowError17, flgFlowError18, flgFlowError19
+    Dim flgFlowError11, flgFlowError12, flgFlowError13, flgFlowError14, flgFlowError15, flgFlowError16
+    Dim flgPctError1, flgPctError2, flgPctError3, flgPctError4
     Dim sHour, sMin, sSec As Integer        ' sequencer time variables
     Dim xb, yb, zb, flgStop As Boolean
     Dim seqRunning As Boolean = False       ' flag to prevent user from clicking any RUN buttons while sequencer is running
-    Dim duration, start, finish             ' sequencer time variables
-    Dim seconds_counter As Integer
+    Dim repRunning As Boolean = False
+    Dim duration, start, finish, repeat_time ' sequencer time variables
     Dim version As Integer = 261            ' keep version updated!
     Dim pctGas1, pctGas2, pctGas3, pctGas4
     Dim run_time(100) As Integer
@@ -38,6 +39,8 @@ Public Class GSMTimed
     Dim leds() As Button                     ' this is really a control array; elements defined in form load below
     Dim stepboxes() As TextBox               '  control array of sequencer text boxes containing run times
     Dim stepcombos() As ComboBox             '  control array of combobox for step actions
+    Dim seconds_counter As Long              '  sequencer step timer
+    Dim repeat_counter As Long                 '  seconds counter for repeat timing
 
 
 
@@ -74,12 +77,18 @@ Public Class GSMTimed
         Next
 
         CreateChart()
+
+
     End Sub
 
     Private Sub stepTimer_Tick(sender As Object, e As EventArgs) Handles stepTimer.Tick
         seconds_counter = seconds_counter + 1
     End Sub
 
+    ' increment seconds counter for REPEAT Time function
+    Private Sub repeatTimer_Tick(sender As Object, e As EventArgs) Handles repeatTimer.Tick
+        repeat_counter = repeat_counter + 1
+    End Sub
 
     ' load and update mixture BAR CHART
     ' this is called whenever the running gas mixture is changed
@@ -155,18 +164,7 @@ Public Class GSMTimed
     End Sub
 
 
-    ' update MESSAGE BOX with any error messages
-    Private Sub tbxErrMsg_TextChanged(sender As Object, e As EventArgs) Handles tbxErrMsg.TextChanged
-        If flgFlowError1 = 1 Or flgFlowError2 = 1 Or flgFlowError3 = 1 Or flgFlowError4 = 1 Or
-            flgFlowError5 = 1 Or flgFlowError6 = 1 Or flgFlowError7 = 1 Or flgFlowError8 = 1 Or
-            flgFlowError9 = 1 Or flgFlowError10 = 1 Or flgFlowError11 = 1 Or flgFlowError12 = 1 Then
-            tbxErrMsg.Text = "Flow out of range!" & vbCrLf & "Adjust gas percent or TOTAL FLOW."
-        ElseIf flgFlowError16 = 1 Or flgFlowError17 = 1 Or flgFlowError18 = 1 Or flgFlowError19 = 1 Then
-            tbxErrMsg.Text = "ERROR! TOTAL PERCENT must be 100%" & vbCrLf & "Adjust non-fill gas percents"
-        Else
-            tbxErrMsg.Text = "STATUS: OK"
-        End If
-    End Sub
+
 
 
 
@@ -206,9 +204,7 @@ Public Class GSMTimed
     Private Sub btnRunSequence_Click(sender As Object, e As EventArgs) Handles btnRunSequence.Click
         Dim x As Integer
         flgStop = False                                 ' flag is set by clicking HALT SEQUENCE
-
         If seqRunning = True Then Return
-
         seqRunning = True                               ' flag to prevent user from clicking other RUN buttons while sequencer is running
 
 restart:                                                ' cycle back here to repeat sequence
@@ -224,19 +220,184 @@ restart:                                                ' cycle back here to rep
         Next
 
         '---------------------------------------------------------------------------------------------------------------------------------------------
+        '        For x = 0 To 14
+        '            If stepcombos(x).Text = "NONE" Then GoTo skip_this_step ' NONE, so skip this step
+        '            If stepcombos(x).Text = "REPEAT" Then GoTo restart      ' REPEAT, so go back to top and repeat sequence
+        '            If stepcombos(x).Text = "STOP" Then Exit For            ' STOP, so clean up and get out
+
+        '            ' this must be a timed run
+        '            ' check for proper format HH:MM:SS
+        '            If Len(stepboxes(x).Text) <> 8 Then
+        '                stepboxes(x).ForeColor = Color.Red                  ' check for proper string format
+        '            Else
+        '                stepboxes(x).ForeColor = Color.Black
+        '            End If
+
+        '            ' extract time from string
+        '            sSec = Val((stepboxes(x).Text).Substring(6, 2))         ' extract seconds from string
+        '            If sSec > 59 Then sSec = 59
+        '            sMin = Val((stepboxes(x).Text).Substring(3, 2))         ' extract minutes
+        '            If sMin > 59 Then sMin = 59
+        '            sHour = Val((stepboxes(x).Text).Substring(0, 2))        ' extract hours
+        '            duration = sSec + (60 * sMin) + (3600 * sHour)          ' convert all to seconds
+        '            If duration = 0 Then GoTo skip_this_step                ' prevent zero time values
+
+        '            '------------------------------------------------------------------------------------------------------------------------------------------
+        '            Select Case stepcombos(x).Text
+        '                Case "Mix 1"                        ' run MIX 1
+        '                    progTimer.Interval = Int(duration * 1000 / 100) ' set interval to give 100 ticks of progress bar
+        '                    ProgBar1.Value = 0              ' reset progress bar to zero
+        '                    progTimer.Enabled = True
+        '                    progTimer.Start()
+        '                    mix_running = 1
+        '                    ledRunning1.BackColor = Color.Red
+        '                    ledRunning1.Refresh()
+        '                    Call btnRun1_Click(sender, e)   ' fire this button to run selected mix
+        '                    leds(x).BackColor = Color.Red
+        '                    leds(x).Refresh()
+
+        '                    btnHaltSequence.Focus()         ' this makes sure the halt sequence button gets read all the time
+
+        '                    stepTimer.Start()               ' 
+        '                    seconds_counter = 0
+        '                    Do While (duration > seconds_counter)
+        '                        My.Application.DoEvents()       ' be sure background ui events are looked at
+        '                    Loop
+
+        '                    leds(x).BackColor = Color.RosyBrown
+        '                    leds(x).Refresh()
+        '                    ProgBar1.Value = 0
+        '                    progTimer.Enabled = False
+        '                    If flgStop = True Then GoTo cleanup_and_exit
+
+        '                Case "Mix 2"                                    ' run MIX 2
+        '                    progTimer.Interval = Int(duration * 1000 / 100) ' set interval to give 100 ticks of progress bar
+        '                    ProgBar1.Value = 0              ' reset progress bar to zero
+        '                    progTimer.Enabled = True
+        '                    progTimer.Start()
+        '                    mix_running = 2
+        '                    ledRunning2.BackColor = Color.Red
+        '                    ledRunning2.Refresh()
+        '                    Call btnRun2_Click(sender, e)   ' fire this button to run selected mix
+        '                    leds(x).BackColor = Color.Red
+        '                    leds(x).Refresh()
+
+        '                    btnHaltSequence.Focus()         ' this makes sure the halt sequence button gets read all the time
+        '                    stepTimer.Start()               ' 
+        '                    seconds_counter = 0
+        '                    Do While (duration > seconds_counter)
+        '                        My.Application.DoEvents()       ' be sure background ui events are looked at
+        '                    Loop
+
+        '                    leds(x).BackColor = Color.RosyBrown
+        '                    leds(x).Refresh()
+        '                    ProgBar1.Value = 0
+        '                    progTimer.Enabled = False
+        '                    If flgStop = True Then GoTo cleanup_and_exit
+
+        '                Case "Mix 3"                                    ' run MIX 3
+        '                    progTimer.Interval = Int(duration * 1000 / 100) ' set interval to give 100 ticks of progress bar
+        '                    ProgBar1.Value = 0              ' reset progress bar to zero
+        '                    progTimer.Enabled = True
+        '                    progTimer.Start()
+        '                    mix_running = 3
+        '                    ledRunning3.BackColor = Color.Red
+        '                    ledRunning3.Refresh()
+        '                    Call btnRun3_Click(sender, e)   ' fire this button to run selected mix
+        '                    leds(x).BackColor = Color.Red
+        '                    leds(x).Refresh()
+
+        '                    btnHaltSequence.Focus()         ' this makes sure the halt sequence button gets read all the time
+        '                    stepTimer.Start()               ' 
+        '                    seconds_counter = 0
+        '                    Do While (duration > seconds_counter)
+        '                        My.Application.DoEvents()       ' be sure background ui events are looked at
+        '                    Loop
+
+        '                    leds(x).BackColor = Color.RosyBrown
+        '                    leds(x).Refresh()
+        '                    ProgBar1.Value = 0
+        '                    progTimer.Enabled = False
+        '                    If flgStop = True Then GoTo cleanup_and_exit
+
+        '                Case "Mix 4"                                    ' run MIX 4
+        '                    progTimer.Interval = Int(duration * 1000 / 100) ' set interval to give 100 ticks of progress bar
+        '                    ProgBar1.Value = 0              ' reset progress bar to zero
+        '                    progTimer.Enabled = True
+        '                    progTimer.Start()
+        '                    mix_running = 4
+        '                    ledRunning4.BackColor = Color.Red
+        '                    ledRunning4.Refresh()
+        '                    Call btnRun4_Click(sender, e)   ' fire this button to run selected mix
+        '                    leds(x).BackColor = Color.Red
+        '                    leds(x).Refresh()
+
+        '                    btnHaltSequence.Focus()         ' this makes sure the halt sequence button gets read all the time
+        '                    stepTimer.Start()               ' 
+        '                    seconds_counter = 0
+        '                    Do While (duration > seconds_counter)
+        '                        My.Application.DoEvents()       ' be sure background ui events are looked at
+        '                    Loop
+
+        '                    leds(x).BackColor = Color.RosyBrown
+        '                    leds(x).Refresh()
+        '                    ProgBar1.Value = 0
+        '                    progTimer.Enabled = False
+        '                    If flgStop = True Then GoTo cleanup_and_exit
+        '            End Select
+        'skip_this_step:
+        '        Next
         For x = 0 To 14
             If stepcombos(x).Text = "NONE" Then GoTo skip_this_step ' NONE, so skip this step
             If stepcombos(x).Text = "REPEAT" Then GoTo restart      ' REPEAT, so go back to top and repeat sequence
             If stepcombos(x).Text = "STOP" Then Exit For            ' STOP, so clean up and get out
 
-            ' this must be a timed run
+            If stepcombos(x).Text = "GOTO" Then                     ' GOTO nn, nn read from seconds position of time panel
+                If Val((stepboxes(x).Text).Substring(6, 2)) <> 0 Then
+                    x = Val((stepboxes(x).Text).Substring(6, 2) - 1)         ' extract seconds from string
+                End If
+            End If
+
+            '-------------------------------------------------------------------------------------------------------------------------------------
+            If stepcombos(x).Text = "REPEAT Time" Then              ' repeat from top to here until time is elapsed
+                If repRunning = False Then                              ' first time, so start timer and set flag
+                    repRunning = True                                  ' set flag that repeat is in progress
+                    ' extract time from string
+                    sSec = Val((stepboxes(x).Text).Substring(6, 2))         ' extract seconds from string
+                    If sSec > 59 Then sSec = 59
+                    sMin = Val((stepboxes(x).Text).Substring(3, 2))         ' extract minutes
+                    If sMin > 59 Then sMin = 59
+                    sHour = Val((stepboxes(x).Text).Substring(0, 2))        ' extract hours
+                    repeat_time = sSec + (60 * sMin) + (3600 * sHour)       ' convert all to seconds
+                    If repeat_time = 0 Then GoTo skip_this_step             ' prevent zero time values
+                    repeatTimer.Start()               ' 
+                    repeat_counter = 0
+                    GoTo restart                                            ' first pass, go back to top (repeat)
+                Else
+                    If repeat_counter < repeat_time Then
+                        GoTo restart
+                    Else
+                        repRunning = False
+                        repeatTimer.Stop()
+                        progTimer.Stop()
+                        progTimer.Enabled = False
+                        If flgStop = True Then GoTo cleanup_and_exit
+                        GoTo skip_this_step
+                    End If
+                End If
+
+                If flgStop = 1 Then Exit For 'GoTo cleanup_and_exit
+            End If
+            '-------------------------------------------------------------------------------------------------------------------------------------
+
+
+            ' else, this must be a timed run
             ' check for proper format HH:MM:SS
             If Len(stepboxes(x).Text) <> 8 Then
                 stepboxes(x).ForeColor = Color.Red                  ' check for proper string format
             Else
                 stepboxes(x).ForeColor = Color.Black
             End If
-
             ' extract time from string
             sSec = Val((stepboxes(x).Text).Substring(6, 2))         ' extract seconds from string
             If sSec > 59 Then sSec = 59
@@ -248,6 +409,32 @@ restart:                                                ' cycle back here to rep
 
             '------------------------------------------------------------------------------------------------------------------------------------------
             Select Case stepcombos(x).Text
+                Case "PAUSE"                        ' run MIX 1
+                    progTimer.Interval = Int(duration * 1000 / 100) ' set interval to give 100 ticks of progress bar
+                    ProgBar1.Value = 0              ' reset progress bar to zero
+                    progTimer.Enabled = True
+                    progTimer.Start()
+                    leds(x).BackColor = Color.Red
+                    leds(x).Refresh()
+
+                    btnHaltSequence.Focus()         ' this makes sure the halt sequence button gets read all the time
+
+                    stepTimer.Start()               ' 
+                    seconds_counter = 0
+                    Do While (duration > seconds_counter)
+                        My.Application.DoEvents()       ' be sure background ui events are looked at
+                        If flgStop = 1 Then Exit For 'GoTo cleanup_and_exit
+                    Loop
+
+                    leds(x).BackColor = Color.RosyBrown
+                    leds(x).Refresh()
+                    ProgBar1.Value = 0
+
+                    progTimer.Stop()
+
+                    progTimer.Enabled = False
+                    If flgStop = True Then GoTo cleanup_and_exit
+
                 Case "Mix 1"                        ' run MIX 1
                     progTimer.Interval = Int(duration * 1000 / 100) ' set interval to give 100 ticks of progress bar
                     ProgBar1.Value = 0              ' reset progress bar to zero
@@ -266,16 +453,15 @@ restart:                                                ' cycle back here to rep
                     seconds_counter = 0
                     Do While (duration > seconds_counter)
                         My.Application.DoEvents()       ' be sure background ui events are looked at
+                        If flgStop = 1 Then Exit For 'GoTo cleanup_and_exit
                     Loop
-
-                    'start = Microsoft.VisualBasic.DateAndTime.Timer
-                    'Do While (Microsoft.VisualBasic.DateAndTime.Timer < (start + duration)) And flgStop = False ' run time for this step
-                    '    My.Application.DoEvents()       ' be sure background ui events are looked at
-                    'Loop
 
                     leds(x).BackColor = Color.RosyBrown
                     leds(x).Refresh()
                     ProgBar1.Value = 0
+
+                    progTimer.Stop()
+
                     progTimer.Enabled = False
                     If flgStop = True Then GoTo cleanup_and_exit
 
@@ -292,16 +478,13 @@ restart:                                                ' cycle back here to rep
                     leds(x).Refresh()
 
                     btnHaltSequence.Focus()         ' this makes sure the halt sequence button gets read all the time
+
                     stepTimer.Start()               ' 
                     seconds_counter = 0
                     Do While (duration > seconds_counter)
                         My.Application.DoEvents()       ' be sure background ui events are looked at
+                        If flgStop = 1 Then Exit For 'GoTo cleanup_and_exit
                     Loop
-
-                    'start = Microsoft.VisualBasic.DateAndTime.Timer
-                    'Do While (Microsoft.VisualBasic.DateAndTime.Timer < (start + duration)) And flgStop = False ' run time for this step
-                    '    My.Application.DoEvents()       ' be sure background ui events are looked at
-                    'Loop
 
                     leds(x).BackColor = Color.RosyBrown
                     leds(x).Refresh()
@@ -322,16 +505,13 @@ restart:                                                ' cycle back here to rep
                     leds(x).Refresh()
 
                     btnHaltSequence.Focus()         ' this makes sure the halt sequence button gets read all the time
+
                     stepTimer.Start()               ' 
                     seconds_counter = 0
                     Do While (duration > seconds_counter)
                         My.Application.DoEvents()       ' be sure background ui events are looked at
+                        If flgStop = 1 Then Exit For 'GoTo cleanup_and_exit
                     Loop
-
-                    'start = Microsoft.VisualBasic.DateAndTime.Timer
-                    'Do While (Microsoft.VisualBasic.DateAndTime.Timer < (start + duration)) And flgStop = False ' run time for this step
-                    '    My.Application.DoEvents()       ' be sure background ui events are looked at
-                    'Loop
 
                     leds(x).BackColor = Color.RosyBrown
                     leds(x).Refresh()
@@ -352,16 +532,13 @@ restart:                                                ' cycle back here to rep
                     leds(x).Refresh()
 
                     btnHaltSequence.Focus()         ' this makes sure the halt sequence button gets read all the time
+
                     stepTimer.Start()               ' 
                     seconds_counter = 0
                     Do While (duration > seconds_counter)
                         My.Application.DoEvents()       ' be sure background ui events are looked at
+                        If flgStop = 1 Then Exit For 'GoTo cleanup_and_exit
                     Loop
-
-                    'start = Microsoft.VisualBasic.DateAndTime.Timer
-                    'Do While (Microsoft.VisualBasic.DateAndTime.Timer < (start + duration)) And flgStop = False ' run time for this step
-                    '    My.Application.DoEvents()       ' be sure background ui events are looked at
-                    'Loop
 
                     leds(x).BackColor = Color.RosyBrown
                     leds(x).Refresh()
@@ -379,27 +556,6 @@ cleanup_and_exit:       ' close down sequencer operations
         Call btnStopAll_Click(sender, e)
         seqRunning = False
     End Sub
-
-
-    '=========================================================================================================================================
-    '                               TOTAL FLOW SETTING ROUTINES
-    '=========================================================================================================================================
-    ' following subs handle all the TOTAL FLOW updowns for the 4 mixtures
-    ' This was not needed in the VBC version, which used "buddy" controls
-    ' NOTE: upDn's work in reverse, so values are correctred to increment with up arrow, and vice-versa
-    'Private Sub upDnFlow1_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow1.Scroll
-    '    tbxTFlow1.Text = -1 * upDnFlow1.Value
-    'End Sub
-    'Private Sub upDnFlow2_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow2.Scroll
-    '    tbxTFlow2.Text = -1 * upDnFlow2.Value
-    'End Sub
-    'Private Sub upDnFlow3_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow3.Scroll
-    '    tbxTFlow3.Text = -1 * upDnFlow3.Value
-    'End Sub
-    'Private Sub upDnFlow4_Scroll(sender As Object, e As ScrollEventArgs) Handles upDnFlow4.Scroll
-    '    tbxTFlow4.Text = -1 * upDnFlow4.Value
-    'End Sub
-
 
 
 
@@ -424,7 +580,6 @@ cleanup_and_exit:       ' close down sequencer operations
     End Sub
 
     Private Sub btnRun2_Click(sender As Object, e As EventArgs) Handles btnRun2.Click
-
         If seqRunning = True Then           ' this locks out user from clicking RUN when sequencer is running
             btnRun2.Enabled = False
         Else btnRun2.Enabled = True
@@ -441,7 +596,6 @@ cleanup_and_exit:       ' close down sequencer operations
     End Sub
 
     Private Sub btnRun3_Click(sender As Object, e As EventArgs) Handles btnRun3.Click
-
         If seqRunning = True Then           ' this locks out user from clicking RUN when sequencer is running
             btnRun3.Enabled = False
         Else btnRun3.Enabled = True
@@ -458,7 +612,6 @@ cleanup_and_exit:       ' close down sequencer operations
     End Sub
 
     Private Sub btnRun4_Click(sender As Object, e As EventArgs) Handles btnRun4.Click
-
         If seqRunning = True Then           ' this locks out user from clicking RUN when sequencer is running
             btnRun4.Enabled = False
         Else btnRun4.Enabled = True
@@ -1378,53 +1531,55 @@ cleanup_and_exit:       ' close down sequencer operations
         End If
 
 
-        '-----------------------------------------------------------------------------------------------------------------
+        '=========================================================================================================================================
+        '                            UPDATE TOTAL PERCENT BOXES AND FLAG ERRORS
+        '=========================================================================================================================================
         'Update total percent boxes by adding up individual gas percentages; should equal 100%!
         totalpct1 = nUpDnPctA1.Value + nUpDnPctB1.Value + nUpDnPctC1.Value + nUpDnPctD1.Value
         tbxTotPct1.Text = totalpct1 & "%"
         If (totalpct1 > 100) Then
             tbxTotPct1.ForeColor = Color.Red
-            flgFlowError16 = 1
+            flgPctError1 = 1
         Else
             tbxTotPct1.ForeColor = Color.Black
-            flgFlowError16 = 0
+            flgPctError1 = 0
         End If
 
         totalpct2 = nUpDnPctA2.Value + nUpDnPctB2.Value + nUpDnPctC2.Value + nUpDnPctD2.Value
         tbxTotPct2.Text = totalpct2 & "%"
         If (totalpct2 > 100) Then
             tbxTotPct2.ForeColor = Color.Red
-            flgFlowError17 = 1
+            flgPctError2 = 1
         Else
             tbxTotPct2.ForeColor = Color.Black
-            flgFlowError17 = 0
+            flgPctError2 = 0
         End If
 
         totalpct3 = nUpDnPctA3.Value + nUpDnPctB3.Value + nUpDnPctC3.Value + nUpDnPctD3.Value
         tbxTotPct3.Text = totalpct3 & "%"
         If (totalpct3 > 100) Then
             tbxTotPct3.ForeColor = Color.Red
-            flgFlowError18 = 1
+            flgPctError3 = 1
         Else
             tbxTotPct3.ForeColor = Color.Black
-            flgFlowError18 = 0
+            flgPctError3 = 0
         End If
 
         totalpct4 = nUpDnPctA4.Value + nUpDnPctB4.Value + nUpDnPctC4.Value + nUpDnPctD4.Value
         tbxTotPct4.Text = totalpct4 & "%"
         If (totalpct4 > 100) Then
             tbxTotPct4.ForeColor = Color.Red
-            flgFlowError19 = 1
+            flgPctError4 = 1
         Else
             tbxTotPct4.ForeColor = Color.Black
-            flgFlowError19 = 0
+            flgPctError4 = 0
         End If
 
-        '-----------------------------------------------------------------------------------------------------------------
-        '                                      Format display values
-        '-----------------------------------------------------------------------------------------------------------------
+        '=========================================================================================================================================
+        '                            CALCULATE FLOWS AND FORMAT INDIVIDUAL FLOW TEXT BOXES
+        '=========================================================================================================================================
         ' update individual flow displays for all 4 mixes
-        ' color text red if outside range for that channel's flow controller
+        ' color text red and set error flags if outside range for that channel's flow controller
         ' MIX 1
         tbxFlow1Mix1.Text = Int((nUpDnPctA1.Value * nUpDnTFlow1.Value) / 100) & " ml"
         If Val(tbxFlow1Mix1.Text) > 0 And (Val(tbxFlow1Mix1.Text) < (maxflow1 / 100) Or Val(tbxFlow1Mix1.Text) > maxflow1) Then ' display 0ml is ok
@@ -1456,126 +1611,143 @@ cleanup_and_exit:       ' close down sequencer operations
         tbxFlow4Mix1.Text = Int((nUpDnPctD1.Value * nUpDnTFlow1.Value) / 100) & " ml"
         If Val(tbxFlow4Mix1.Text) > 0 And (Val(tbxFlow4Mix1.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix1.Text) > maxflow4) Then
             tbxFlow4Mix1.ForeColor = Color.Red
-            flgFlowError3 = 1
+            flgFlowError4 = 1
         Else
             tbxFlow4Mix1.ForeColor = Color.Black
-            flgFlowError3 = 0
+            flgFlowError4 = 0
         End If
         '-----------------------------------------------------------------------------------------------------------------
         ' MIX 2
         tbxFlow1Mix2.Text = Int((nUpDnPctA2.Value * nUpDnTFlow2.Value) / 100) & " ml"
         If Val(tbxFlow1Mix2.Text) > 0 And (Val(tbxFlow1Mix2.Text) < (maxflow1 / 100) Or Val(tbxFlow1Mix2.Text) > maxflow1) Then
             tbxFlow1Mix2.ForeColor = Color.Red
-            flgFlowError4 = 1
+            flgFlowError5 = 1
         Else
             tbxFlow1Mix2.ForeColor = Color.Black
-            flgFlowError4 = 0
+            flgFlowError5 = 0
         End If
 
         tbxFlow2Mix2.Text = Int((nUpDnPctB2.Value * nUpDnTFlow2.Value) / 100) & " ml"
         If Val(tbxFlow2Mix2.Text) > 0 And (Val(tbxFlow2Mix2.Text) < (maxflow2 / 100) Or Val(tbxFlow2Mix2.Text) > maxflow2) Then
             tbxFlow2Mix2.ForeColor = Color.Red
-            flgFlowError5 = 1
+            flgFlowError6 = 1
         Else
             tbxFlow2Mix2.ForeColor = Color.Black
-            flgFlowError5 = 0
+            flgFlowError6 = 0
         End If
 
         tbxFlow3Mix2.Text = Int((nUpDnPctC2.Value * nUpDnTFlow2.Value) / 100) & " ml"
         If Val(tbxFlow3Mix2.Text) > 0 And (Val(tbxFlow3Mix2.Text) < (maxflow3 / 100) Or Val(tbxFlow3Mix2.Text) > maxflow3) Then
             tbxFlow3Mix2.ForeColor = Color.Red
-            flgFlowError6 = 1
+            flgFlowError7 = 1
         Else
             tbxFlow3Mix2.ForeColor = Color.Black
-            flgFlowError6 = 0
+            flgFlowError7 = 0
         End If
 
         tbxFlow4Mix2.Text = Int((nUpDnPctD2.Value * nUpDnTFlow2.Value) / 100) & " ml"
         If Val(tbxFlow4Mix2.Text) > 0 And (Val(tbxFlow4Mix2.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix2.Text) > maxflow4) Then
             tbxFlow4Mix2.ForeColor = Color.Red
-            flgFlowError6 = 1
+            flgFlowError8 = 1
         Else
             tbxFlow4Mix2.ForeColor = Color.Black
-            flgFlowError6 = 0
+            flgFlowError8 = 0
         End If
         '-----------------------------------------------------------------------------------------------------------------
         ' MIX 3
         tbxFlow1Mix3.Text = Int((nUpDnPctA3.Value * nUpDnTFlow3.Value) / 100) & " ml"
         If Val(tbxFlow1Mix3.Text) > 0 And (Val(tbxFlow1Mix3.Text) < (maxflow1 / 100) Or Val(tbxFlow1Mix3.Text) > maxflow1) Then
             tbxFlow1Mix3.ForeColor = Color.Red
-            flgFlowError7 = 1
+            flgFlowError9 = 1
         Else
             tbxFlow1Mix3.ForeColor = Color.Black
-            flgFlowError7 = 0
+            flgFlowError9 = 0
         End If
 
         tbxFlow2Mix3.Text = Int((nUpDnPctB3.Value * nUpDnTFlow3.Value) / 100) & " ml"
         If Val(tbxFlow2Mix3.Text) > 0 And (Val(tbxFlow2Mix3.Text) < (maxflow2 / 100) Or Val(tbxFlow2Mix3.Text) > maxflow2) Then
             tbxFlow2Mix3.ForeColor = Color.Red
-            flgFlowError8 = 1
+            flgFlowError10 = 1
         Else
             tbxFlow2Mix3.ForeColor = Color.Black
-            flgFlowError8 = 0
+            flgFlowError10 = 0
         End If
 
         tbxFlow3Mix3.Text = Int((nUpDnPctC3.Value * nUpDnTFlow3.Value) / 100) & " ml"
         If Val(tbxFlow3Mix3.Text) > 0 And (Val(tbxFlow3Mix3.Text) < (maxflow3 / 100) Or Val(tbxFlow3Mix3.Text) > maxflow3) Then
             tbxFlow3Mix3.ForeColor = Color.Red
-            flgFlowError9 = 1
+            flgFlowError11 = 1
         Else
             tbxFlow3Mix3.ForeColor = Color.Black
-            flgFlowError9 = 0
+            flgFlowError11 = 0
         End If
 
         tbxFlow4Mix3.Text = Int((nUpDnPctD3.Value * nUpDnTFlow4.Value) / 100) & " ml"
         If Val(tbxFlow4Mix3.Text) > 0 And (Val(tbxFlow4Mix3.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix3.Text) > maxflow3) Then
             tbxFlow4Mix3.ForeColor = Color.Red
-            flgFlowError9 = 1
+            flgFlowError12 = 1
         Else
             tbxFlow4Mix3.ForeColor = Color.Black
-            flgFlowError9 = 0
+            flgFlowError12 = 0
         End If
         '-----------------------------------------------------------------------------------------------------------------
         ' MIX 4
         tbxFlow1Mix4.Text = Int((nUpDnPctA4.Value * nUpDnTFlow4.Value) / 100) & " ml"
         If Val(tbxFlow1Mix4.Text) > 0 And (Val(tbxFlow1Mix4.Text) < (maxflow1 / 100) Or Val(tbxFlow1Mix4.Text) > maxflow1) Then
             tbxFlow1Mix4.ForeColor = Color.Red
-            flgFlowError10 = 1
+            flgFlowError13 = 1
         Else
             tbxFlow1Mix4.ForeColor = Color.Black
-            flgFlowError10 = 0
+            flgFlowError13 = 0
         End If
 
         tbxFlow2Mix4.Text = Int((nUpDnPctB4.Value * nUpDnTFlow4.Value) / 100) & " ml"
         If Val(tbxFlow2Mix4.Text) > 0 And (Val(tbxFlow2Mix4.Text) < (maxflow2 / 100) Or Val(tbxFlow2Mix4.Text) > maxflow2) Then
             tbxFlow2Mix4.ForeColor = Color.Red
-            flgFlowError11 = 1
+            flgFlowError14 = 1
         Else
             tbxFlow2Mix4.ForeColor = Color.Black
-            flgFlowError11 = 0
+            flgFlowError14 = 0
         End If
 
         tbxFlow3Mix4.Text = Int((nUpDnPctC4.Value * nUpDnTFlow4.Value) / 100) & " ml"
         If Val(tbxFlow3Mix4.Text) > 0 And (Val(tbxFlow3Mix4.Text) < (maxflow3 / 100) Or Val(tbxFlow3Mix4.Text) > maxflow3) Then
             tbxFlow3Mix4.ForeColor = Color.Red
-            flgFlowError12 = 1
+            flgFlowError15 = 1
         Else
             tbxFlow3Mix4.ForeColor = Color.Black
-            flgFlowError12 = 0
+            flgFlowError15 = 0
         End If
 
         tbxFlow4Mix4.Text = Int((nUpDnPctD4.Value * nUpDnTFlow4.Value) / 100) & " ml"
         If Val(tbxFlow4Mix4.Text) > 0 And (Val(tbxFlow4Mix4.Text) < (maxflow4 / 100) Or Val(tbxFlow4Mix4.Text) > maxflow4) Then
             tbxFlow4Mix4.ForeColor = Color.Red
-            flgFlowError12 = 1
+            flgFlowError16 = 1
         Else
             tbxFlow4Mix4.ForeColor = Color.Black
-            flgFlowError12 = 0
+            flgFlowError16 = 0
         End If
 
-        'Call tbxErrMsg_TextChanged(sender, e)
-
+        CheckForError()
     End Sub
+
+
+    '=========================================================================================================================================
+    '                                           UPDATE ERROR MESSAGES IN MESSAGE BOX
+    '=========================================================================================================================================
+    Private Sub CheckForError()
+        If flgFlowError1 = 1 Or flgFlowError2 = 1 Or flgFlowError3 = 1 Or flgFlowError4 = 1 Or
+            flgFlowError5 = 1 Or flgFlowError6 = 1 Or flgFlowError7 = 1 Or flgFlowError8 = 1 Or
+            flgFlowError9 = 1 Or flgFlowError10 = 1 Or flgFlowError11 = 1 Or flgFlowError12 = 1 Or
+            flgFlowError13 = 1 Or flgFlowError14 = 1 Or flgFlowError15 = 1 Or flgFlowError16 = 1 Then
+            tbxErrMsg.Text = "Flow out of range!" & vbCrLf & "Adjust gas percent or TOTAL FLOW."
+        ElseIf flgPctError1 = 1 Or flgPctError2 = 1 Or flgPctError3 = 1 Or flgPctError4 = 1 Then
+            tbxErrMsg.Text = "ERROR! TOTAL PERCENT must be 100%" & vbCrLf & "Adjust non-fill gas percents"
+        Else
+            tbxErrMsg.Text = "STATUS: OK"
+        End If
+    End Sub
+
 
     '=========================================================================================================================================
     '                                               TIMER 1 ROUTINES, EXECUTED EVERY 100mS
@@ -1610,12 +1782,7 @@ cleanup_and_exit:       ' close down sequencer operations
             ledRunning4.BackColor = Color.RosyBrown    ' gray
         End If
 
-
-
-
 jumparound:     ' vector here on error during value entry
-
     End Sub
-
 End Class
 
