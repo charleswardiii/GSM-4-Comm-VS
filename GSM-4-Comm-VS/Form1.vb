@@ -165,9 +165,6 @@ Public Class GSMTimed
 
 
 
-
-
-
     ' this is the ProgBar1 progress bar timer
     ' tick increment is set programatically to allow 100 ticks full scale
     Private Sub progTimer_Tick(sender As Object, e As EventArgs) Handles progTimer.Tick
@@ -206,7 +203,7 @@ Public Class GSMTimed
         flgStop = False                                 ' flag is set by clicking HALT SEQUENCE
         If seqRunning = True Then Return
         seqRunning = True                               ' flag to prevent user from clicking other RUN buttons while sequencer is running
-
+        On Error Resume Next
 restart:                                                ' cycle back here to repeat sequence
         ' check user time boxes for proper format "HH:MM:SS",  highlight with red text if invalid
         For x = 0 To 14
@@ -262,7 +259,6 @@ restart:                                                ' cycle back here to rep
                 If flgStop = 1 Then Exit For 'GoTo cleanup_and_exit
             End If
             '-------------------------------------------------------------------------------------------------------------------------------------
-
 
             ' else, this must be a timed run
             ' check for proper format HH:MM:SS
